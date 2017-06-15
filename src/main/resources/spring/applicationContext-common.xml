@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+		http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/aop
+		http://www.springframework.org/schema/aop/spring-aop.xsd http://www.springframework.org/schema/context
+		http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/tx
+		http://www.springframework.org/schema/tx/spring-tx.xsd">
+
+	<context:annotation-config />
+
+	<context:property-placeholder location="classpath:jdbc.properties" />
+
+	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">
+		<!-- JDBC properties -->
+		<property name="driverClass" value="${jdbc.driverClassName}" />
+		<property name="jdbcUrl" value="${jdbc.url}" />
+		<property name="user" value="${jdbc.username}" />
+		<property name="password" value="${jdbc.password}" />
+		<!-- C3P0 properties -->
+		<property name="acquireIncrement" value="${c3p0.acquireIncrement}" />
+		<property name="initialPoolSize" value="${c3p0.initialPoolSize}" />
+		<property name="minPoolSize" value="${c3p0.minPoolSize}" />
+		<property name="maxPoolSize" value="${c3p0.maxPoolSize}" />
+		<property name="maxIdleTime" value="${c3p0.maxIdleTime}" />
+	</bean>
+
+	<bean id="sessionFactory" class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<property name="mappingLocations">
+			<list>
+				<value>classpath:hibernate/*.hbm.xml</value>
+			</list>
+		</property>
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
+				<prop key="hibernate.generate_statistics">true</prop>
+			</props>
+		</property>
+	</bean>
+
+	<bean id="hibernateTemplate" class="org.springframework.orm.hibernate3.HibernateTemplate">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+
+	<bean id="genericHibernateDao" class="com.toy4codes.website.framework.generic.dao.GenericHibernateDaoImpl">
+		<property name="hibernateTemplate" ref="hibernateTemplate" />
+	</bean>
+
+	<!-- Local transactions(single dataSource) : org.springframework.orm.hibernate3.HibernateTransactionManager -->
+	<!-- Global transactions(multi dataSource) : org.springframework.transaction.jta.JtaTransactionManager -->
+	<bean id="txManager" class="org.springframework.orm.hibernate3.HibernateTransactionManager">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+
+	<tx:advice id="txAdvice" transaction-manager="txManager">
+		<tx:attributes>
+			<tx:method name="load*" isolation="READ_COMMITTED" propagation="SUPPORTS" read-only="true" />
+			<tx:method name="*" isolation="READ_COMMITTED" propagation="REQUIRED" />
+		</tx:attributes>
+	</tx:advice>
+
+	<aop:config>
+		<aop:pointcut id="businessService" expression="execution(* com.toy4codes.website.framework..*Service.*(..))" />
+		<aop:advisor advice-ref="txAdvice" pointcut-ref="businessService" />
+	</aop:config>
+
+</beans>
