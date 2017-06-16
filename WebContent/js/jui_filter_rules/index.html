@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>jui_filter_rules demo</title>
+
+<!--  JQUERY -->
+<script type="text/javascript" src="../jquery/jquery-1.12.4.min.js"></script>
+ 
+<!--  JQUERY-UI (optional) -->
+<!--  in this demo: datepicker, autocompete, slider, spinner are in use in filters -->
+<link rel="stylesheet" type="text/css" href="../jquery-ui/jquery-ui.min.css">
+<script type="text/javascript" src="../jquery-ui/jquery-ui.min.js"></script>
+
+<!--  BOOTSTRAP -->
+<link rel="stylesheet" type="text/css" href="../bootstrap-3.3.7/css/bootstrap.min.css">
+<script type="text/javascript" src="../bootstrap-3.3.7/js/bootstrap.min.js"></script>
+
+<!--  timepicker is used in jui_filter_rules -->
+<link rel="stylesheet" type="text/css" href="../jQuery-Timepicker-Addon/jquery-ui-timepicker-addon.min.css"/>
+<script type="text/javascript" src="../jQuery-Timepicker-Addon/jquery-ui-timepicker-addon.min.js"></script>
+
+<!--  moment is used in jui_filter_rules -->
+<script type="text/javascript" src="../moment/min/moment.min.js"></script>
+
+<!-- jui_filter_rules -->
+<link rel="stylesheet" type="text/css" href="minified/jquery.jui_filter_rules.bs.min.css">
+<script type="text/javascript" src="minified/jquery.jui_filter_rules.min.js"></script>
+<script type="text/javascript" src="minified/localization/en.min.js"></script>
+
+</head>
+<body>
+
+	<div id="jui_filter_rules"></div>
+	
+	<div style="margin-top: 30px; margin-bottom: 50px;">
+		<button id="get_rules" class="btn btn-primary" type="button">Get Rules</button>
+		<button id="clear_rules" class="btn btn-primary" type="button">Clear Rules</button>
+		<button id="set_rules" class="btn btn-danger" type="button">Set Rules</button>
+	</div>
+	
+	<!-- Modal dialog -->
+	<div class="modal fade" id="modal_dialog" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+					<h4 class="modal-title" id="myModalLabel">Labs - pontikis.net</h4>
+				</div>
+				<div class="modal-body" id="modal_dialog_content"></div>
+				<div class="modal-footer">
+					<button id="modal_btn_ok" type="button" class="btn btn-primary" data-dismiss="modal">OK</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<script>
+	
+		$(document).ready(function(){
+			
+			// jui_filter_rules script
+			
+			$("#jui_filter_rules").jui_filter_rules({
+				
+				// styles
+                bootstrap_version: 3,
+				
+				filters: [
+					{
+						filterName: "Lastname",
+						filterType: "text",
+						field: "lastname",
+						filterLabel: "Last name",
+						excluded_operators: ["in", "not_in"],
+						filter_interface: [
+							{
+								filter_element: "input",
+								filter_element_attributes: {type: "text", value: "Smith"}
+							}
+						]
+					},
+					{
+		                filterName: "AgeInYears", 
+		                filterType: "number", 
+		                numberType: "double", 
+		                field: "age", 
+		                filterLabel: "Age (years)",
+		                excluded_operators: ["in", "not_in"]
+		            },
+		            {
+		                filterName: "GroupMembers",
+		                filterType: "number",
+		                numberType: "integer", 
+		                field: "group_members",
+		                filterLabel: "Group Members",
+		                excluded_operators: ["in", "not_in"],
+		                filter_interface: [
+							{
+		                        filter_element: "input",
+		                        filter_element_attributes: {
+		                            type: "text",
+		                            value: "1",
+		                            style: "width: 75px; margin: 0 5px;"
+		                        },
+		                        filter_widget: "spinner",
+		                        filter_widget_properties: {
+		                            min: 1,
+		                            max: 10
+		                        }
+		                    }
+		                ]
+		            },
+		            {
+		                filterName: "PerCentCompleted", 
+		                filterType: "number", 
+		                numberType: "integer", 
+		                field: "percent_completed", 
+		                filterLabel: "PerCent Completed",
+		                excluded_operators: ["in", "not_in"],
+		                filter_interface: [
+		                    {
+		                        filter_element: "input",
+		                        filter_element_attributes: {
+		                            type: "text",
+		                            disabled: "disabled",
+		                            style: "width: 50px;  display: inline-block;"
+		                        }
+		                    },
+		                    {
+		                        filter_element: "div",
+		                        filter_element_attributes: {
+		                            style: "width: 120px; margin-left: 15px; display: inline-block;"
+		                        },
+		                        filter_widget: "slider",
+		                        filter_widget_properties: {
+		                            min: 0,
+		                            max: 100,
+		                            slide: function(event, ui) {
+		                                $(this).prev("input").val(ui.value);
+		                            }
+		                        },
+		                        returns_no_value: "yes"
+		                    }
+						]
+		            },
+		            {
+		                filterName: "DateInserted", 
+		                filterType: "date", 
+		                field: "date_inserted", 
+		                filterLabel: "Date inserted",
+		                excluded_operators: ["in", "not_in"],
+		                filter_interface: [
+		                    {
+		                        filter_element: "input",
+		                        filter_element_attributes: {
+		                            type: "text"
+		                        },
+		                        filter_widget: "datepicker",
+		                        filter_widget_properties: {
+		                            dateFormat: "dd/mm/yy",
+		                            changeMonth: true,
+		                            changeYear: true
+		                        }
+		                    }
+		                ],
+		                validate_dateformat: ["DD/MM/YYYY"],
+		                filter_value_conversion: {
+		                    function_name: "local_datetime",
+		                    args: [
+		                        {filter_value: "yes"},
+		                        {value: "DD/MM/YYYY"}
+		                    ]
+		                }
+		            },
+		            {
+		            	filterName: "DateUpdated",
+		            	filterType: "date", 
+		            	field: "date_updated", 
+		            	filterLabel: "Datetime updated",
+		                excluded_operators: ["in", "not_in"],
+		                filter_interface: [
+		                    {
+		                        filter_element: "input",
+		                        filter_element_attributes: {
+		                            type: "text",
+		                            title: "Set the date and time using format: dd/mm/yyyy hh:mm:ss"
+		                        },
+		                        filter_widget: "datetimepicker",
+		                        filter_widget_properties: {
+		                            dateFormat: "dd/mm/yy",
+		                            timeFormat: "HH:mm:ss",
+		                            changeMonth: true,
+		                            changeYear: true,
+		                            showSecond: true
+		                        }
+		                    }
+		                ],
+		                validate_dateformat: ["DD/MM/YYYY HH:mm:ss"],
+		                filter_value_conversion: {
+		                	function_name: "local_datetime_to_UTC_timestamp",
+		                    args: [
+		                        {filter_value: "yes"},
+		                        {value: "DD/MM/YYYY HH:mm:ss"}
+		                    ]
+		                }
+		            },
+		            {
+		                filterName: "Category",
+		                filterType: "number",
+		                numberType: "integer",
+		                field: "category", 
+		                filterLabel: "Category (ajax data)",
+		                excluded_operators: ["equal", "not_equal", "less", "less_or_equal", "greater", "greater_or_equal"],
+		                filter_interface: [
+		                    {
+		                        filter_element: "input",
+		                        filter_element_attributes: {type: "checkbox"},
+		                        vertical_orientation: "yes"
+		                    }
+		                ],
+		                // lookup_values_ajax_url: "struts_ajax_action"
+		                // when use ajax_url, must return a json array object like [{},{}]
+		                lookup_values: [
+		                    {lk_option: "Category 1", lk_value: "1"},
+		                    {lk_option: "Category 2", lk_value: "2", lk_selected: "yes"},
+		                    {lk_option: "Category 3", lk_value: "3"},
+		                    {lk_option: "Category 4", lk_value: "4", lk_selected: "yes"}
+		                ]
+		            },
+		            {
+		                filterName: "Level", 
+		                filterType: "number", 
+		                numberType: "integer", 
+		                field: "level", 
+		                filterLabel: "Level",
+		                excluded_operators: ["in", "not_in", "less", "less_or_equal", "greater", "greater_or_equal"],
+		                filter_interface: [
+		                    {
+		                        filter_element: "input",
+		                        filter_element_attributes: {
+		                            type: "radio",
+		                            style: "width: auto; margin-top: 0; display: inline-block;"
+		                        }
+		                    }
+		                ],
+		             	// lookup_values_ajax_url: "struts_ajax_action"
+		                // when use ajax_url, must return a json array object like [{},{}]
+		                lookup_values: [
+		                    {lk_option: "Level1", lk_value: "1"},
+		                    {lk_option: "Level2", lk_value: "2"},
+		                    {lk_option: "Level3", lk_value: "3", lk_selected: "yes"}
+		                ]
+		            },
+		            {
+		                filterName: "Language", 
+		                filterType: "text", 
+		                field: "language", 
+		                filterLabel: "Language code (ajax data)",
+		                excluded_operators: ["in", "not_in", "less", "less_or_equal", "greater", "greater_or_equal"],
+		                filter_interface: [
+		                    {
+		                        filter_element: "select"
+		                    }
+		                ],
+		                // lookup_values_ajax_url: "struts_ajax_action"
+		                // when use ajax_url, must return a json array object like [{},{}]
+		                lookup_values: [
+		                    {lk_option: "Afrikanns", lk_value: "AF"},
+	                    	{lk_option: "Albanian", lk_value: "SQ", lk_selected: "yes"}
+		                ]
+		            },
+		            {
+		                filterName: "Company", 
+		                filterType: "number", 
+		                numberType: "integer", 
+		                field: "company", 
+		                filterLabel: "Company",
+		                excluded_operators: ["in", "not_in", "less", "less_or_equal", "greater", "greater_or_equal"],
+		                filter_interface: [
+		                    {
+		                        filter_element: "select"
+		                    }
+		                ],
+		             	// lookup_values_ajax_url: "struts_ajax_action"
+		                // when use ajax_url, must return a json array object like [{},{}]
+		                lookup_values: [
+		                    {lk_option: "Company1", lk_value: "1"},
+		                    {lk_option: "Company2", lk_value: "2"},
+		                    {lk_option: "Company3", lk_value: "3", lk_selected: "yes"}
+		                ]
+		            },
+		            {
+		                filterName: "Country",
+		                filterType: "text",
+		                field: "country",
+		                filterLabel: "Country code",
+		                excluded_operators: ["in", "not_in", "less", "less_or_equal", "greater", "greater_or_equal"],
+		                filter_interface: [
+		                    {
+		                        filter_element: "input",
+		                        filter_element_attributes: {
+		                        	type: "text",
+		                        	disabled: "disabled",
+		                        	style: "width: 80px; display: inline-block;"
+		                        }
+		                    },
+		                    {
+		                        filter_element: "input",
+		                        filter_element_attributes: {
+		                        	type: "text",
+		                        	style: "width: 120px; margin-left: 5px; display: inline-block;"
+		                        },
+		                        filter_widget: "autocomplete",
+		                        filter_widget_properties: {
+		                            // source: "struts_ajax_action"
+		                            // when use ajax_url, must return a json array object like [{},{}]
+		                            source: [{id:"CN", value:"China"},{id:"JP", value:"Japan"}],
+		                            minLength: 1,
+		                            select: function(event, ui) {
+		                                $(this).prevAll("input").val(ui.item.id);
+		                            },
+		                            // mustMatch implementation
+		                            change: function(event, ui) {
+		                                if(ui.item == null) {
+		                                    $(this).val('');
+		                                    $(this).prevAll("input").val('');
+		                                }
+		                            }
+		                        },
+		                        returns_no_value: "yes"
+		                    }
+		                ]
+		            }
+				],
+				
+		        filter_rules: [
+					{
+						condition: {
+							filterType: "text",
+		                    field: "lastname",
+		                    operator: "begins_with",
+		                    filterValue: ["S"]
+						},
+		                logical_operator: "AND"
+					},
+					{
+		            	condition: {
+			                filterType: "number",
+			                numberType: "integer",
+			                field: "level",
+			                operator: "equal",
+			                filterValue: ["1"]
+						},
+						logical_operator: "AND"
+					},
+					{
+						condition: {
+			                filterType: "number",
+			                numberType: "integer",
+			                field: "group_members",
+			                operator: "equal",
+			                filterValue: ["2"]
+						},
+						logical_operator: "AND"
+					}
+				],
+				
+				onValidationError: function(event, data) {
+		            alert(data.err_description + " (" + data.err_code + ")");
+		            if(data.hasOwnProperty("elem_filter")) {
+		                data.elem_filter.focus();
+		            }
+		        },
+		        
+		        onSetRules: function() {
+		            show_modal($("#modal_dialog"), $("#modal_dialog_content"), "New rules have been applied.");
+		            return false;
+		        }
+			});
+			
+			// get_rules, clear_rules, set_rules script
+			$("#get_rules").click(function() {
+				var a_rules = $("#jui_filter_rules").jui_filter_rules("getRules", 0, []);
+				if(!a_rules) {
+					show_modal($("#modal_dialog"), $("#modal_dialog_content"), "Rules error...");
+					return false;
+				}
+				if(a_rules.length == 0) {
+					show_modal($("#modal_dialog"), $("#modal_dialog_content"), "No rules defined...");
+				    return false;
+				}
+				var html = '<a id="select_code" href="javascript:void(0);">Select code</a>';
+				html += '<pre id="rules_code">' + JSON.stringify(a_rules, null, '    ') + '</pre>';
+				show_modal($("#modal_dialog"), $("#modal_dialog_content"), html);
+			});
+			
+			$("#clear_rules").click(function() {
+				$("#jui_filter_rules").jui_filter_rules("clearAllRules");
+			});
+			
+			$("#set_rules").click(function() {
+				var rules = [
+					{
+						condition: {
+					        filterType: "date",
+					        field: "date_inserted",
+					        operator: "less_or_equal",
+					        filterValue: ["01/05/2010"]
+				      	},
+						logical_operator: "AND"
+				    },
+				    {
+				      	condition: {
+					        filterType: "number",
+					        numberType: "integer",
+					        field: "company",
+					        operator: "equal",
+					        filterValue: ["1"]
+				      	},
+				      	logical_operator: "AND"
+				    },
+				    {
+				      	condition: [
+				        	{
+				          		condition: {
+						            filterType: "number",
+						            numberType: "double",
+						            field: "age",
+						            operator: "greater",
+						            filterValue: ["30"]
+				          		},
+				          		logical_operator: "OR"
+				        	},
+				        	{
+								condition: {
+						        	filterType: "number",
+						            numberType: "integer",
+						            field: "category",
+						            operator: "in",
+						            filterValue: ["1","3"]
+				          		},
+				          		logical_operator: "OR"
+				        	},
+				        	{
+				          		condition: {
+						            filterType: "number",
+						            numberType: "integer",
+						            field: "percent_completed",
+						            operator: "greater_or_equal",
+						            filterValue: ["60"]
+				          		},
+				          		logical_operator: "OR",
+				          		slider_value: "60"
+				        	}
+				      	],
+				    	logical_operator: "AND"
+					}
+				];
+				
+				$("#jui_filter_rules").jui_filter_rules("setRules", rules);
+			});
+			
+			$(document).on("click", "#select_code", function(event) {
+		        selectText("rules_code");
+		    });
+			
+		});
+		
+		// common script
+		function show_modal(elem_modal, elem_modal_content, content_html, elem_focus) {
+			elem_modal_content.html(content_html);
+			elem_modal.modal("show");
+		}
+		
+		/**
+		 * http://stackoverflow.com/questions/985272/jquery-selecting-text-in-an-element-akin-to-highlighting-with-your-mouse
+		 * @param element
+		 */
+		function selectText(element) {
+		    var doc = document
+		        , text = doc.getElementById(element)
+		        , range, selection
+		        ;
+		    if(doc.body.createTextRange) { //ms
+		        range = doc.body.createTextRange();
+		        range.moveToElementText(text);
+		        range.select();
+		    } else if(window.getSelection) { //all others
+		        selection = window.getSelection();
+		        range = doc.createRange();
+		        range.selectNodeContents(text);
+		        selection.removeAllRanges();
+		        selection.addRange(range);
+		    }
+		}
+		
+		/**
+		 * Local datetime
+		 */
+		function local_datetime(date_str, dateformat) {
+
+			// avoid date overflow in user input (moment("14/14/2005", "DD/MM/YYYY") => Tue Feb 14 2006)
+		    if(moment(date_str, dateformat).isValid() == false) {
+		        throw new Error("Invalid date");
+		    }
+
+		    // parse date string using given dateformat and create a javascript date object
+		    var date = moment(date_str, dateformat).toDate();
+
+		 	// local datetime
+		    return  date.getFullYear() +
+				PadDigits(date.getMonth() + 1, 2) +
+		        PadDigits(date.getDate(), 2) +
+		        PadDigits(date.getHours(), 2) +
+		        PadDigits(date.getMinutes(), 2) +
+		        PadDigits(date.getSeconds(), 2);
+		}
+		
+		/**
+		 * Convert local timezone date string to UTC timestamp
+		 *
+		 * Alternative syntax using jquery (instead of moment.js):
+		 *     var date = $.datepicker.parseDateTime(dateformat, timeformat, date_str);
+		 *
+		 * @see http://stackoverflow.com/questions/948532/how-do-you-convert-a-javascript-date-to-utc
+		 * @param date_str
+		 * @param dateformat
+		 * @return {String}
+		 */
+		function local_datetime_to_UTC_timestamp(date_str, dateformat) {
+
+			// avoid date overflow in user input (moment("14/14/2005", "DD/MM/YYYY") => Tue Feb 14 2006)
+		    if(moment(date_str, dateformat).isValid() == false) {
+		        throw new Error("Invalid date");
+		    }
+
+		    // parse date string using given dateformat and create a javascript date object
+		    var date = moment(date_str, dateformat).toDate();
+
+		    // convert to UTC datetime
+		    return  date.getUTCFullYear() +
+				PadDigits(date.getUTCMonth() + 1, 2) +
+		        PadDigits(date.getUTCDate(), 2) +
+		        PadDigits(date.getUTCHours(), 2) +
+		        PadDigits(date.getUTCMinutes(), 2) +
+		        PadDigits(date.getUTCSeconds(), 2);
+		}
+
+		/**
+		 * Add leading zeros
+		 * @param n
+		 * @param totalDigits
+		 * @return {String}
+		 */
+		function PadDigits(n, totalDigits) {
+		    n = n.toString();
+		    var pd = '';
+		    if(totalDigits > n.length) {
+		        for(i = 0; i < (totalDigits - n.length); i++) {
+		            pd += '0';
+		        }
+		    }
+		    return pd + n.toString();
+		}
+	
+	</script>
+	
+</body>
+</html>
