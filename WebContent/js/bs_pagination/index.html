@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Bootstrap Pagination Demo</title>
+
+<!--  JQUERY -->
+<script type="text/javascript" src="../jquery/jquery-1.12.4.min.js"></script>
+
+<!--  BOOTSTRAP -->
+<link rel="stylesheet" type="text/css" href="../bootstrap-3.3.7/css/bootstrap.min.css">
+<script type="text/javascript" src="../bootstrap-3.3.7/js/bootstrap.min.js"></script>
+
+<!--  PAGINATION plugin -->
+<link rel="stylesheet" type="text/css" href="jquery.bs_pagination.min.css">
+<script type="text/javascript" src="jquery.bs_pagination.min.js"></script>
+<script type="text/javascript" src="localization/en.min.js"></script>
+
+</head>
+<body>
+
+	<div id="bs_pagination_div"></div>
+
+	<script>
+	
+		$(document).ready(function() {
+			
+			$("#bs_pagination_div").bs_pagination({
+
+				// returns page_num and rows_per_page after a link has clicked
+				onChangePage: function(event, data) {
+					console.debug('Current page is: ' + data.currentPage + '. ' + data.rowsPerPage + ' are displayed per page.');
+				},
+				
+				// returns page_num and rows_per_page on plugin load
+				onLoad: function(event, data) {
+					console.debug('Current page is: ' + data.currentPage + '. ' + data.rowsPerPage + ' are displayed per page.')
+				}
+			});
+			
+		});
+		
+	</script>
+
+</body>
+</html>
