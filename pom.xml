@@ -34,6 +34,8 @@
 		<!-- log framework -->
 		<slf4j.version>1.7.13</slf4j.version>
 		<log4j.version>1.2.17</log4j.version>
+		<!-- jackson -->
+		<jackson.version>2.8.8.1</jackson.version>
 
 		<!-- provided javax.servlet-api dependency -->
 		<javax.servlet.version>3.0.1</javax.servlet.version>
@@ -152,6 +154,13 @@
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-log4j12</artifactId>
 			<version>${slf4j.version}</version>
+		</dependency>
+
+		<!-- jackson -->
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-databind</artifactId>
+			<version>${jackson.version}</version>
 		</dependency>
 
 		<!-- provided javax.servlet-api dependency -->
