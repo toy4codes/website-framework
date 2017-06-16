@@ -1,0 +1,146 @@
+[
+    {
+        "element_rule_id": "rule_jui_filter_rules_2",
+        "condition": {
+            "filterType": "text",
+            "field": "lastname",
+            "operator": "begins_with",
+            "filterValue": [
+                "S"
+            ]
+        },
+        "logical_operator": "AND"
+    },
+    {
+        "element_rule_id": "rule_jui_filter_rules_3",
+        "condition": {
+            "filterType": "number",
+            "numberType": "double",
+            "field": "age",
+            "operator": "equal",
+            "filterValue": [
+                "10"
+            ]
+        },
+        "logical_operator": "AND"
+    },
+    {
+        "element_rule_id": "rule_jui_filter_rules_11",
+        "condition": {
+            "filterType": "number",
+            "numberType": "integer",
+            "field": "group_members",
+            "operator": "equal",
+            "filterValue": [
+                "1"
+            ]
+        },
+        "logical_operator": "AND"
+    },
+    {
+        "element_rule_id": "rule_jui_filter_rules_10",
+        "condition": {
+            "filterType": "number",
+            "numberType": "integer",
+            "field": "percent_completed",
+            "operator": "equal",
+            "filterValue": [
+                "26"
+            ]
+        },
+        "logical_operator": "AND"
+    },
+    {
+        "element_rule_id": "rule_jui_filter_rules_9",
+        "condition": {
+            "filterType": "date",
+            "field": "date_inserted",
+            "operator": "equal",
+            "filterValue": [
+                "20170509000000"
+            ]
+        },
+        "logical_operator": "AND"
+    },
+    {
+        "element_rule_id": "rule_jui_filter_rules_8",
+        "condition": {
+            "filterType": "date",
+            "field": "date_updated",
+            "operator": "equal",
+            "filterValue": [
+                "20170509024433"
+            ]
+        },
+        "logical_operator": "AND"
+    },
+    {
+        "condition": [
+            {
+                "element_rule_id": "rule_jui_filter_rules_13",
+                "condition": {
+                    "filterType": "number",
+                    "numberType": "integer",
+                    "field": "category",
+                    "operator": "in",
+                    "filterValue": [
+                        "2",
+                        "4"
+                    ]
+                },
+                "logical_operator": "OR"
+            },
+            {
+                "element_rule_id": "rule_jui_filter_rules_14",
+                "condition": {
+                    "filterType": "number",
+                    "numberType": "integer",
+                    "field": "level",
+                    "operator": "equal",
+                    "filterValue": [
+                        "3"
+                    ]
+                },
+                "logical_operator": "OR"
+            }
+        ],
+        "logical_operator": "AND"
+    },
+    {
+        "element_rule_id": "rule_jui_filter_rules_5",
+        "condition": {
+            "filterType": "text",
+            "field": "language",
+            "operator": "equal",
+            "filterValue": [
+                "SQ"
+            ]
+        },
+        "logical_operator": "AND"
+    },
+    {
+        "element_rule_id": "rule_jui_filter_rules_4",
+        "condition": {
+            "filterType": "number",
+            "numberType": "integer",
+            "field": "company",
+            "operator": "equal",
+            "filterValue": [
+                "3"
+            ]
+        },
+        "logical_operator": "AND"
+    },
+    {
+        "element_rule_id": "rule_jui_filter_rules_12",
+        "condition": {
+            "filterType": "text",
+            "field": "country",
+            "operator": "equal",
+            "filterValue": [
+                "CN"
+            ]
+        },
+        "logical_operator": "AND"
+    }
+]

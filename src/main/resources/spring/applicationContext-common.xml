@@ -67,4 +67,7 @@
 		<aop:advisor advice-ref="txAdvice" pointcut-ref="businessService" />
 	</aop:config>
 
+	<!-- jackson json -->
+	<bean id="objectMapper" class="com.fasterxml.jackson.databind.ObjectMapper" />
+
 </beans>

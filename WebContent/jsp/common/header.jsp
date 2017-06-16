@@ -41,6 +41,28 @@
 <link href="${pageContext.request.contextPath}/js/startbootstrap-sb-admin-2-3.3.7/dist/css/sb-admin-2.css" rel="stylesheet">
 <script src="${pageContext.request.contextPath}/js/startbootstrap-sb-admin-2-3.3.7/dist/js/sb-admin-2.js"></script>
 
+<!--  timepicker is used in jui_filter_rules -->
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/js/jQuery-Timepicker-Addon/jquery-ui-timepicker-addon.min.css"/>
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/jQuery-Timepicker-Addon/jquery-ui-timepicker-addon.min.js"></script>
+
+<!--  moment is used in jui_filter_rules -->
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/moment/min/moment.min.js"></script>
+
+<!--  FILTERS plugin -->
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/js/jui_filter_rules/minified/jquery.jui_filter_rules.bs.min.css">
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/jui_filter_rules/minified/jquery.jui_filter_rules.min.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/jui_filter_rules/minified/localization/en.min.js"></script>
+
+<!--  PAGINATION plugin -->
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/js/bs_pagination/jquery.bs_pagination.min.css">
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/bs_pagination/jquery.bs_pagination.min.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/bs_pagination/localization/en.min.js"></script>
+
+<!--  DATAGRID plugin -->
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/js/bs_grid/minified/jquery.bs_grid.min.css">
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/bs_grid/minified/jquery.bs_grid.min.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/bs_grid/minified/localization/en.min.js"></script>
+
 <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
 <!--[if lt IE 9]>
