@@ -8,7 +8,7 @@
 			<column name="ID" />
 			<generator class="native" />
 		</id>
-		<property name="time" type="java.util.Date">
+		<property name="time" type="com.toy4codes.website.framework.hibernate.type.converter.DateTimeStringConverter">
 			<column name="TIME" />
 		</property>
 		<property name="source" type="java.lang.String">

@@ -1,12 +1,10 @@
 package com.toy4codes.website.framework.beans;
 
-import java.util.Date;
-
 public class WiresharkPacket {
 
 	private int id;
 
-	private Date time;
+	private String time;
 
 	private String source;
 
@@ -26,11 +24,11 @@ public class WiresharkPacket {
 		this.id = id;
 	}
 
-	public Date getTime() {
+	public String getTime() {
 		return time;
 	}
 
-	public void setTime(Date time) {
+	public void setTime(String time) {
 		this.time = time;
 	}
 

@@ -36,7 +36,7 @@
 					<a href="#"><i class="fa fa-sitemap fa-fw"></i> WiresharkPacket<span class="fa arrow"></span></a>
 					<ul class="nav nav-second-level">
 						<li>
-							<a href="${pageContext.request.contextPath}/jsp/wiresharkPacket/list.jsp">Table</a>
+							<a href="${pageContext.request.contextPath}/jsp/wiresharkPacket/tables.jsp">Tables</a>
 						</li>
 					</ul>
 					<!-- /.nav-second-level -->
