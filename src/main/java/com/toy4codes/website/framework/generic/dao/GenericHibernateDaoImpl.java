@@ -90,7 +90,7 @@ public class GenericHibernateDaoImpl<T> extends HibernateDaoSupport implements G
 		try {
 			super.getHibernateTemplate().flush();
 		} catch (DataAccessException e) {
-			logger.error(e);
+			log.error(e);
 		}
 	}
 
@@ -99,7 +99,7 @@ public class GenericHibernateDaoImpl<T> extends HibernateDaoSupport implements G
 		try {
 			super.getHibernateTemplate().clear();
 		} catch (DataAccessException e) {
-			logger.error(e);
+			log.error(e);
 		}
 	}
 
@@ -108,7 +108,7 @@ public class GenericHibernateDaoImpl<T> extends HibernateDaoSupport implements G
 		try {
 			return super.getHibernateTemplate().find(queryString, values);
 		} catch (DataAccessException e) {
-			logger.error(e);
+			log.error(e);
 			return null;
 		}
 	}

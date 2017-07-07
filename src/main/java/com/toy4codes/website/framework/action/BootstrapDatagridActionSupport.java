@@ -45,7 +45,7 @@ public abstract class BootstrapDatagridActionSupport extends ActionSupport {
 		}
 	}
 
-	public abstract String getEntityName();
+	protected abstract String getEntityName();
 
 	public BootstrapDatagridRequest getBootstrapDatagridRequest() {
 		return bootstrapDatagridRequest;
