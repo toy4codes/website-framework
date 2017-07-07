@@ -23,5 +23,6 @@
 	</package>
 
 	<include file="struts/user.xml" />
+	<include file="struts/wiresharkPacket.xml" />
 
 </struts>

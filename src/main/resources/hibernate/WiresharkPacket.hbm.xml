@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd//hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+	<class name="com.toy4codes.website.framework.beans.WiresharkPacket" table="wireshark_packet">
+		<id name="id" type="int">
+			<column name="ID" />
+			<generator class="native" />
+		</id>
+		<property name="time" type="java.util.Date">
+			<column name="TIME" />
+		</property>
+		<property name="source" type="java.lang.String">
+			<column name="SOURCE" />
+		</property>
+		<property name="destination" type="java.lang.String">
+			<column name="DESTINATION" />
+		</property>
+		<property name="protocol" type="java.lang.String">
+			<column name="PROTOCOL" />
+		</property>
+		<property name="length" type="int">
+			<column name="LENGTH" />
+		</property>
+		<property name="info" type="java.lang.String">
+			<column name="INFO" />
+		</property>
+	</class>
+
+	<query name="findAllProtocols">select protocol from WiresharkPacket group by protocol</query>
+
+</hibernate-mapping>

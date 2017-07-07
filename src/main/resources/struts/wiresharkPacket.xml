@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+
+	<package name="wiresharkPacket" namespace="/wiresharkPacket" extends="json-default">
+
+		<action name="datagrid" class="wiresharkPacketAction" method="datagrid">
+			<result type="json">
+				<param name="root">bootstrapDatagridResponse</param>
+			</result>
+		</action>
+		
+		<action name="protocols" class="wiresharkPacketAction" method="protocols">
+			<result type="json">
+				<param name="root">lookupValues</param>
+			</result>
+		</action>
+
+	</package>
+
+</struts>

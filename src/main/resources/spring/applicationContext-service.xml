@@ -9,4 +9,6 @@
 
 	<bean id="userService" class="com.toy4codes.website.framework.service.impl.UserServiceImpl" />
 
+	<bean id="wiresharkPacketService" class="com.toy4codes.website.framework.service.impl.WiresharkPacketServiceImpl" />
+
 </beans>
