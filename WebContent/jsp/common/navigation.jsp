@@ -38,6 +38,9 @@
 						<li>
 							<a href="${pageContext.request.contextPath}/jsp/wiresharkPacket/tables.jsp">Tables</a>
 						</li>
+						<li>
+							<a href="${pageContext.request.contextPath}/jsp/wiresharkPacket/charts.jsp">Charts</a>
+						</li>
 					</ul>
 					<!-- /.nav-second-level -->
 				</li>

@@ -63,6 +63,12 @@
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/bs_grid/minified/jquery.bs_grid.min.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/bs_grid/minified/localization/en.min.js"></script>
 
+<!-- flot chart -->
+<script src="${pageContext.request.contextPath}/js/flot/excanvas.js"></script>
+<script src="${pageContext.request.contextPath}/js/flot/jquery.flot.js"></script>
+<script src="${pageContext.request.contextPath}/js/flot/jquery.flot.pie.js"></script>
+<script src="${pageContext.request.contextPath}/js/flot/jquery.flot.tooltip.js"></script>
+
 <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
 <!--[if lt IE 9]>
