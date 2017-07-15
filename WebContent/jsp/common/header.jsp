@@ -65,6 +65,7 @@
 
 <!-- flot chart -->
 <script src="${pageContext.request.contextPath}/js/flot/excanvas.js"></script>
+<script src="${pageContext.request.contextPath}/js/flot/jquery.colorhelpers.js"></script>
 <script src="${pageContext.request.contextPath}/js/flot/jquery.flot.js"></script>
 <script src="${pageContext.request.contextPath}/js/flot/jquery.flot.pie.js"></script>
 <script src="${pageContext.request.contextPath}/js/flot/jquery.flot.tooltip.js"></script>
