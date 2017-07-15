@@ -18,6 +18,12 @@
 				<param name="root">lookupValues</param>
 			</result>
 		</action>
+		
+		<action name="protocolsAndCounts" class="wiresharkPacketAction" method="protocolsAndCounts">
+			<result type="json">
+				<param name="root">protocolsAndCounts</param>
+			</result>
+		</action>
 
 	</package>
 

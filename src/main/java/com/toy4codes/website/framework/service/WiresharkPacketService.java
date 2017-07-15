@@ -6,4 +6,6 @@ public interface WiresharkPacketService {
 	
 	public List<String> findAllProtocols();
 
+	public List<String[]> findAllProtocolsAndCounts();
+	
 }

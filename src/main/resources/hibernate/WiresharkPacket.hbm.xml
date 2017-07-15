@@ -29,5 +29,7 @@
 	</class>
 
 	<query name="findAllProtocols">select protocol from WiresharkPacket group by protocol</query>
+	
+	<query name="findAllProtocolsAndCounts">select protocol, count(protocol) from WiresharkPacket group by protocol</query>
 
 </hibernate-mapping>

@@ -21,4 +21,12 @@ public class WiresharkPacketDaoTest extends SpringContainerLayerJUnitSuite {
 		log.debug(protocols);
 	}
 
+	@Test
+	public void findAllProtocolsAndCountsTest() {
+		List<Object[]> results = wiresharkPacketDao.findAllProtocolsAndCounts();
+		for (Object[] result : results) {
+			log.debug(result[0] + ", " + result[1]);
+		}
+	}
+
 }
