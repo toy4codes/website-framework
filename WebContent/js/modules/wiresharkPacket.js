@@ -59,21 +59,29 @@ $(document).ready(function(){
 
 	if($("#wireshark-packet-protocol-pie-chart").length){
 		
-		var data = [{
-	        label: "Series 0",
-	        data: 1
-	    }, {
-	        label: "Series 1",
-	        data: 3
-	    }, {
-	        label: "Series 2",
-	        data: 9
-	    }, {
-	        label: "Series 3",
-	        data: 20
-	    }];
+		var data = [];
 		
 		// ajax
+		$.ajax({
+			url : "/website-framework/wiresharkPacket/protocolsAndCounts",
+			type : "POST",
+			// the type of data we expect back
+			dataType : "json",
+			async : false
+		})
+		// code to run if the request succeeds (is done);
+		.done(function(protocolsAndCounts){
+			for(var i = 0; i < protocolsAndCounts.length; i++){
+				var protocol = protocolsAndCounts[i][0];
+				var count = protocolsAndCounts[i][1];
+				var protocolAndCount = {"label" : protocol, "data" : count};
+				data.push(protocolAndCount);
+			}
+		});
+		
+		var formatter = function (label, series) {
+			return label + ' ' + toy4codes.round(series.percent, 3);
+		};
 		
 		var options = {
 			series: {
@@ -81,12 +89,16 @@ $(document).ready(function(){
 			        show: true
 			    }
 			},
+			legend: {
+				show: true,
+				labelFormatter: formatter,
+			},
 			grid: {
 			    hoverable: true
 			},
 			tooltip: true,
 			tooltipOpts: {
-			    content: "%p.0%, %s", // show percentages
+			    content: "%p.3%, %s", // show percentages
 			    shifts: {
 			        x: 20,
 			        y: 0

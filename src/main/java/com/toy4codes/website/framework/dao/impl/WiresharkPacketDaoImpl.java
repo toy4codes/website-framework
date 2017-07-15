@@ -8,10 +8,16 @@ import com.toy4codes.website.framework.generic.dao.GenericHibernateDaoImpl;
 
 public class WiresharkPacketDaoImpl extends GenericHibernateDaoImpl<WiresharkPacket> implements WiresharkPacketDao {
 
-	@SuppressWarnings("unchecked")
 	@Override
+	@SuppressWarnings("unchecked")
 	public List<String> findAllProtocols() {
 		return (List<String>) super.findByNamedQuery("findAllProtocols", (Object[]) null);
+	}
+	
+	@Override
+	@SuppressWarnings("unchecked")
+	public List<Object[]> findAllProtocolsAndCounts() {
+		return (List<Object[]>) super.findByNamedQuery("findAllProtocolsAndCounts", (Object[]) null);
 	}
 
 }

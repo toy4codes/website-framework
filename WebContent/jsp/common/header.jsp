@@ -69,6 +69,9 @@
 <script src="${pageContext.request.contextPath}/js/flot/jquery.flot.pie.js"></script>
 <script src="${pageContext.request.contextPath}/js/flot/jquery.flot.tooltip.js"></script>
 
+<!-- common javascript library -->
+<script src="${pageContext.request.contextPath}/js/modules/common.js"></script>
+
 <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
 <!--[if lt IE 9]>

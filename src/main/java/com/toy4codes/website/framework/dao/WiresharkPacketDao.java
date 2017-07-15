@@ -9,4 +9,6 @@ public interface WiresharkPacketDao extends GenericHibernateDao<WiresharkPacket>
 
 	public List<String> findAllProtocols();
 	
+	public List<Object[]> findAllProtocolsAndCounts();
+	
 }
