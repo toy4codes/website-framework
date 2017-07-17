@@ -1,0 +1,10 @@
+<jboss-deployment-structure>
+	<deployment>
+		<!-- exclude-subsystem prevents a subsystems deployment unit processors running on a deployment -->
+		<!-- which gives basically the same effect as removing the subsystem, but it only affects single deployment -->
+		<!-- Issue with Webservice project with Apache CXF deployed into Jboss (https://developer.jboss.org/thread/221654?_sscc=t) -->
+		<exclude-subsystems>
+			<subsystem name="webservices" />
+		</exclude-subsystems>
+	</deployment>
+</jboss-deployment-structure>
