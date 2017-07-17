@@ -8,6 +8,7 @@
 	<constant name="struts.devMode" value="true" />
 	<constant name="struts.objectFactory" value="spring" />
 	<constant name="struts.enable.DynamicMethodInvocation" value="false" />
+	<constant name="struts.action.excludePattern" value=".*webservice.*"/>
 
 	<package name="package-default" namespace="/" extends="struts-default">
 
