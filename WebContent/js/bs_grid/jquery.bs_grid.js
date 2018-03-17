@@ -609,7 +609,6 @@
                 	// -------------------------------------------------- //
                 	// var total_rows = data["total_rows"];
                 	// -------------------------------------------------- //
-                	// fix bug ------------------------------------------ //
                 	// author: toy4codes, date: 2017/05/11 -------------- //
                     var total_rows = data["totalRows"];
                     // -------------------------------------------------- //
@@ -750,6 +749,11 @@
                  */
                 columns: [],
 
+                // max_str_column_width ------------------------------------------------- //
+            	// author: toy4codes, date: 2018/03/17 ---------------------------------- //
+                max_str_column_width: 80,
+                // ---------------------------------------------------------------------- //
+                
                 /**
                  * MANDATORY PROPERTIES: field, order
                  * UNIQUE PROPERTIES: field
@@ -1049,7 +1053,6 @@
                 	// filter_rules: s.filterOptions.filter_rules,
                 	// debug_mode: s.debug_mode
                 	// -------------------------------------------------- //
-                	// fix bug ------------------------------------------ //
                 	// author: toy4codes, date: 2017/05/11 -------------- //
                     "bootstrapDatagridRequest.pageNum": s.pageNum,
                     "bootstrapDatagridRequest.rowsPerPage": s.rowsPerPage,
@@ -1079,7 +1082,6 @@
                         // -------------------------------------------------- //
                         // filter_error = data["filter_error"];
                         // -------------------------------------------------- //
-                    	// fix bug ------------------------------------------ //
                     	// author: toy4codes, date: 2017/05/11 -------------- //
                         filter_error = data["filterError"];
                         // -------------------------------------------------- //
@@ -1094,7 +1096,6 @@
                     // total_rows = data["total_rows"];
                     // page_data = data["page_data"];
                     // -------------------------------------------------- //
-                	// fix bug ------------------------------------------ //
                 	// author: toy4codes, date: 2017/05/11 -------------- //
                     total_rows = data["totalRows"];
                     page_data = data["pageData"];
@@ -1106,13 +1107,12 @@
                     row_primary_key = s.row_primary_key;
 
                     if(s.debug_mode == "yes") {
-                    	// -------------------------------------------------- //
+                    	// ---------------------------------------------------------------------- //
                     	// elem.triggerHandler("onDebug", {debug_message: data["debug_message"]});
-                    	// -------------------------------------------------- //
-                    	// fix bug ------------------------------------------ //
-                    	// author: toy4codes, date: 2017/05/11 -------------- //
+                    	// ---------------------------------------------------------------------- //
+                    	// author: toy4codes, date: 2017/05/11 ---------------------------------- //
                         elem.triggerHandler("onDebug", {debug_message: data["debugMessage"]});
-                        // -------------------------------------------------- //
+                        // ---------------------------------------------------------------------- //
                     }
 
                     // replace null with empty string
@@ -1134,7 +1134,8 @@
                         rowsPerPage = parseInt(s.rowsPerPage),
                         sortingIndicator,
                         row_id_html, i, row, tbl_html, row_index,
-                        offset = ((pageNum - 1) * rowsPerPage);
+                        offset = ((pageNum - 1) * rowsPerPage),
+                        th_width;
 
                     tbl_html = '<thead>';
                     row_id_html = (row_primary_key ? ' id="' + table_id + '_tr_0"' : '');
@@ -1166,7 +1167,11 @@
                                         sortingIndicator = '';
                                 }
                             }
-                            tbl_html += '<th class="' + s.commonThClass + '">' + s.columns[i].header + sortingIndicator + '</th>';
+                            // datagrid column width ---------------------------- //
+                        	// author: toy4codes, date: 2018/03/17 -------------- //
+                            th_width = get_column_width(s.columns[i]);
+                            // -------------------------------------------------- //
+                            tbl_html += '<th class="' + s.commonThClass + '" width="' + th_width + '">' + s.columns[i].header + sortingIndicator + '</th>';
                         }
                     }
                     tbl_html += '</tr>';
@@ -1185,7 +1190,16 @@
 
                         for(i in s.columns) {
                             if(column_is_visible(s.columns[i])) {
-                                tbl_html += '<td>' + page_data[row][s.columns[i].field] + '</td>';
+                            	// too large column width ----------------------------------------------- //
+                            	// author: toy4codes, date: 2018/03/17 ---------------------------------- //
+                            	if((typeof page_data[row][s.columns[i].field] == "string") 
+                            			&&  (page_data[row][s.columns[i].field].length > s.max_str_column_width)) {
+                            		tbl_html += '<td>' + page_data[row][s.columns[i].field].substr(0, s.max_str_column_width) + "..." + '</td>';
+                            	} else {
+                            		tbl_html += '<td>' + page_data[row][s.columns[i].field] + '</td>';
+                            	}
+                                // tbl_html += '<td>' + page_data[row][s.columns[i].field] + '</td>';
+                            	// ---------------------------------------------------------------------- //
                             }
                         }
 
@@ -1334,6 +1348,19 @@
     var get_column_header = function(column) {
         return column.hasOwnProperty("header") ? column["header"] : column["field"];
     };
+    
+    /**
+     * Get column width (utility function)
+     *
+     * @param {object} column
+     * @returns {string}
+     */
+    // utility function --------------------------------- //
+	// author: toy4codes, date: 2018/03/17 -------------- //
+    var get_column_width = function(column) {
+        return column.hasOwnProperty("width") ? column["width"] : "";
+    };
+    // -------------------------------------------------- //
 
     /**
      * Get sorting name (utility function)

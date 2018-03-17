@@ -59,9 +59,9 @@
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/bs_pagination/localization/en.min.js"></script>
 
 <!--  DATAGRID plugin -->
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/js/bs_grid/minified/jquery.bs_grid.min.css">
-<script type="text/javascript" src="${pageContext.request.contextPath}/js/bs_grid/minified/jquery.bs_grid.min.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/js/bs_grid/minified/localization/en.min.js"></script>
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/js/bs_grid/jquery.bs_grid.css">
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/bs_grid/jquery.bs_grid.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/bs_grid/localization/en.js"></script>
 
 <!-- flot chart -->
 <script src="${pageContext.request.contextPath}/js/flot/excanvas.js"></script>

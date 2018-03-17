@@ -13,14 +13,16 @@ $(document).ready(function(){
 			rowSelectionMode: "multiple", // "multiple", "single", false
 			
 			columns: [
-				{field: "id", header: "Code", visible: "no"},
-				{field: "time", header: "Time"},
-				{field: "source", header: "Source"},
-				{field: "destination", header: "Destination"},
-				{field: "protocol", header: "Protocol"},
-				{field: "length", header: "length", "sortable": "no"},
+				{field: "id", header: "Code", width:"5%", visible: "no"},
+				{field: "time", header: "Time", width:"10%"},
+				{field: "source", header: "Source", width:"15%"},
+				{field: "destination", header: "Destination", width:"15%"},
+				{field: "protocol", header: "Protocol", width:"10%"},
+				{field: "length", header: "length", width:"5%", "sortable": "no"},
 				{field: "info", header: "Info", "sortable": "no"}
 			],
+			
+			max_str_column_width: 50,
 			
 			sorting: [
 				{sortingName: "Code", field: "id", order: "ascending"},
@@ -43,7 +45,7 @@ $(document).ready(function(){
 								filter_element: "select"
 							}
 						],
-						lookup_values_ajax_url: "../../wiresharkPacket/protocols"
+						lookup_values_ajax_url: "/website-framework/wiresharkPacket/protocols"
 						// when use ajax_url, must return a json array object like [{},{}]
 					}
 				]
