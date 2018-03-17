@@ -33,6 +33,15 @@
 		<div class="sidebar-nav navbar-collapse">
 			<ul class="nav" id="side-menu">
 				<li>
+					<a href="#"><i class="fa fa-cog fa-fw"></i> System Management<span class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level">
+                    	<li>
+                        	<a href="${pageContext.request.contextPath}/jsp/systemManagement/userManagement.jsp"">User Management</a>
+                        </li>
+					</ul>
+                    <!-- /.nav-second-level -->
+                </li>
+				<li>
 					<a href="#"><i class="fa fa-sitemap fa-fw"></i> WiresharkPacket<span class="fa arrow"></span></a>
 					<ul class="nav nav-second-level">
 						<li>
