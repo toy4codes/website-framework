@@ -4,11 +4,10 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.opensymphony.xwork2.ActionSupport;
 import com.toy4codes.website.framework.beans.User;
 import com.toy4codes.website.framework.service.UserService;
 
-public class UserAction extends ActionSupport {
+public class UserAction extends BootstrapDatagridActionSupport {
 
 	private static final long serialVersionUID = -5398444012034022391L;
 
@@ -19,6 +18,11 @@ public class UserAction extends ActionSupport {
 	@Autowired
 	private UserService userService;
 
+	@Override
+	protected String getEntityName() {
+		return User.class.getSimpleName();
+	}
+	
 	public String save() {
 		return userService.save(user) ? SUCCESS : ERROR;
 	}

@@ -9,6 +9,6 @@ CREATE TABLE `wireshark_packet` (
   `length` smallint(6) unsigned DEFAULT NULL,
   `info` varchar(2048) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=104965 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 

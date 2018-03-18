@@ -14,12 +14,6 @@ public class User {
 		super();
 	}
 
-	public User(String email, String password) {
-		super();
-		this.email = email;
-		this.password = password;
-	}
-
 	public int getId() {
 		return id;
 	}

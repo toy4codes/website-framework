@@ -15,7 +15,9 @@ public class UserServiceTest extends SpringContainerLayerJUnitSuite {
 	@Test
 	public void curdTest() {
 
-		User user = new User("example@email.com", "password");
+		User user = new User();
+		user.setEmail("example@email.com");
+		user.setPassword("password");
 
 		// save
 		Assert.assertTrue("save user fail", userService.save(user) == true);
