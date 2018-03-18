@@ -1,5 +1,7 @@
 <jsp:include page="/jsp/common/header.jsp" />
 
+<script src="${pageContext.request.contextPath}/js/modules/systemManagement/userManagement.js"></script>
+
 <div id="wrapper">
 
 	<jsp:include page="/jsp/common/navigation.jsp" />
