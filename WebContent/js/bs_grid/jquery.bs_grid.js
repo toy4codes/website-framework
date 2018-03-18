@@ -99,6 +99,14 @@
                 // apply container style
                 elem.removeClass().addClass(settings.containerClass);
 
+                // new - view - delete button event ----------------- //
+            	// author: toy4codes, date: 2018/03/18 -------------- //
+                elem.unbind("onNewClick").bind("onNewClick", settings.onNewClick);
+                elem.unbind("onViewClick").bind("onViewClick", settings.onViewClick);
+                elem.unbind("onEditClick").bind("onEditClick", settings.onEditClick);
+                elem.unbind("onDeleteClick").bind("onDeleteClick", settings.onDeleteClick);
+                // -------------------------------------------------- //
+                
                 // bind events
                 elem.unbind("onCellClick").bind("onCellClick", settings.onCellClick);
                 elem.unbind("onRowClick").bind("onRowClick", settings.onRowClick);
@@ -169,6 +177,17 @@
                     elem_pagination = $("#" + pagination_id);
 
                 // create toolbar ----------------------------------------------
+                
+                // new - view - delete button ----------------------- //
+            	// author: toy4codes, date: 2018/03/18 -------------- //
+                if(settings.editor == true) {
+                	tools_html += '<button type="button" title="New" class="btn btn-success">New</button>' + ' ';
+                    tools_html += '<button type="button" title="View" class="btn btn-info disabled">View</button>' + ' ';
+                    tools_html += '<button type="button" title="Edit" class="btn btn-warning disabled">Edit</button>' + ' ';
+                    tools_html += '<button type="button" title="Delete" class="btn btn-danger disabled">Delete</button>' + ' ';
+                }
+                // -------------------------------------------------- //
+                
                 // columns list
                 tools_html += '<div class="btn-group pull-right">';
 
@@ -671,6 +690,24 @@
                         elem_filter_container.hide();
                     }
 
+                    // new - view - delete button event ----------------- //
+                	// author: toy4codes, date: 2018/03/18 -------------- //
+                    if(settings.editor == true) {
+                    	elem_tools.off("click", ".btn-success").on("click", ".btn-success", function() {
+                    		elem.triggerHandler("onNewClick");
+                        });
+                    	elem_tools.off("click", ".btn-info").on("click", ".btn-info", function() {
+                    		elem.triggerHandler("onViewClick");
+                        });
+                    	elem_tools.off("click", ".btn-warning").on("click", ".btn-warning", function() {
+                    		elem.triggerHandler("onEditClick");
+                        });
+                    	elem_tools.off("click", ".btn-danger").on("click", ".btn-danger", function() {
+                    		elem.triggerHandler("onDeleteClick");
+                        });
+                    }
+                    // -------------------------------------------------- //
+                    
                     /* filter toogle */
                     elem_tools.off("click", "#" + filter_toggle_id).on("click", "#" + filter_toggle_id, function() {
 
@@ -753,6 +790,11 @@
             	// author: toy4codes, date: 2018/03/17 ---------------------------------- //
                 max_str_column_width: 80,
                 // ---------------------------------------------------------------------- //
+                
+                // new - view - delete button ----------------------- //
+            	// author: toy4codes, date: 2018/03/18 -------------- //
+                editor: false,
+                // -------------------------------------------------- //
                 
                 /**
                  * MANDATORY PROPERTIES: field, order
@@ -855,6 +897,22 @@
                 // misc
                 debug_mode: "no",
 
+                // new - view - delete button event ----------------- //
+            	// author: toy4codes, date: 2018/03/18 -------------- //
+                onNewClick: function() {
+                	console.log("new button click");
+                },
+                onViewClick: function() {
+                	console.log("view button click");
+                },
+                onEditClick: function() {
+                	console.log("edit button click");
+                },
+                onDeleteClick: function() {
+                	console.log("delete button click");
+                },
+                // -------------------------------------------------- //
+                
                 // events
                 onCellClick: function() {
                 },
@@ -866,6 +924,7 @@
                 },
                 onDisplay: function() {
                 }
+                
             };
 
             if(bootstrap_version == "2") {
