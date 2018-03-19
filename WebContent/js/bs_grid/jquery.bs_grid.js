@@ -99,7 +99,7 @@
                 // apply container style
                 elem.removeClass().addClass(settings.containerClass);
 
-                // new - view - delete button event ----------------- //
+                // new - view - edit - delete button event ---------- //
             	// author: toy4codes, date: 2018/03/18 -------------- //
                 elem.unbind("onNewClick").bind("onNewClick", settings.onNewClick);
                 elem.unbind("onViewClick").bind("onViewClick", settings.onViewClick);
@@ -109,6 +109,24 @@
                 
                 // bind events
                 elem.unbind("onCellClick").bind("onCellClick", settings.onCellClick);
+                
+                // new - view - edit - delete button event ---------- //
+            	// author: toy4codes, date: 2018/03/18 -------------- //
+                if(settings.editor == true) {
+                	settings.onRowClick = function(event, data) {
+                		if(data.row_status == "selected") {
+        					$(".btn-view").removeClass("disabled");
+        					$(".btn-edit").removeClass("disabled");
+        					$(".btn-delete").removeClass("disabled");
+        				} else {
+        					$(".btn-view").addClass("disabled");
+        					$(".btn-edit").addClass("disabled");
+        					$(".btn-delete").addClass("disabled");
+        				}
+                	}
+                }
+                // -------------------------------------------------- //
+                
                 elem.unbind("onRowClick").bind("onRowClick", settings.onRowClick);
                 elem.unbind("onDatagridError").bind("onDatagridError", settings.onDatagridError);
                 elem.unbind("onDebug").bind("onDebug", settings.onDebug);
@@ -178,13 +196,13 @@
 
                 // create toolbar ----------------------------------------------
                 
-                // new - view - delete button ----------------------- //
+                // new - view - edit - delete button ---------------- //
             	// author: toy4codes, date: 2018/03/18 -------------- //
                 if(settings.editor == true) {
-                	tools_html += '<button type="button" title="New" class="btn btn-success">New</button>' + ' ';
-                    tools_html += '<button type="button" title="View" class="btn btn-info disabled">View</button>' + ' ';
-                    tools_html += '<button type="button" title="Edit" class="btn btn-warning disabled">Edit</button>' + ' ';
-                    tools_html += '<button type="button" title="Delete" class="btn btn-danger disabled">Delete</button>' + ' ';
+                	tools_html += '<button type="button" title="New" class="btn btn-new">New</button>' + ' ';
+                    tools_html += '<button type="button" title="View" class="btn btn-view disabled">View</button>' + ' ';
+                    tools_html += '<button type="button" title="Edit" class="btn btn-edit disabled">Edit</button>' + ' ';
+                    tools_html += '<button type="button" title="Delete" class="btn btn-delete disabled">Delete</button>' + ' ';
                 }
                 // -------------------------------------------------- //
                 
@@ -307,6 +325,24 @@
                 /**
                  * EVENTS ******************************************************
                  */
+                
+                // new - view - edit - delete button event ---------- //
+            	// author: toy4codes, date: 2018/03/18 -------------- //
+                if(settings.editor == true) {
+                	elem_tools.off("click", ".btn-new").on("click", ".btn-new", function() {
+                		elem.triggerHandler("onNewClick");
+                    });
+                	elem_tools.off("click", ".btn-view").on("click", ".btn-view", function() {
+                		elem.triggerHandler("onViewClick");
+                    });
+                	elem_tools.off("click", ".btn-edit").on("click", ".btn-edit", function() {
+                		elem.triggerHandler("onEditClick");
+                    });
+                	elem_tools.off("click", ".btn-delete").on("click", ".btn-delete", function() {
+                		elem.triggerHandler("onDeleteClick");
+                    });
+                }
+                // -------------------------------------------------- //
 
                 //TOOLS - columns list -----------------------------------------
                 var elem_columns_list = $("#" + columns_list_id);
@@ -447,7 +483,7 @@
                         var row_id = parseInt($(this).attr("id").substr(row_prefix_len)),
                             row_status,
                             idx = methods.selectedRows.call(elem, "selected_index", row_id);
-
+                        
                         if(idx > -1) {
                             methods.selectedRows.call(elem, "remove_id", idx);
                             methods.selectedRows.call(elem, "mark_deselected", row_id);
@@ -690,24 +726,6 @@
                         elem_filter_container.hide();
                     }
 
-                    // new - view - delete button event ----------------- //
-                	// author: toy4codes, date: 2018/03/18 -------------- //
-                    if(settings.editor == true) {
-                    	elem_tools.off("click", ".btn-success").on("click", ".btn-success", function() {
-                    		elem.triggerHandler("onNewClick");
-                        });
-                    	elem_tools.off("click", ".btn-info").on("click", ".btn-info", function() {
-                    		elem.triggerHandler("onViewClick");
-                        });
-                    	elem_tools.off("click", ".btn-warning").on("click", ".btn-warning", function() {
-                    		elem.triggerHandler("onEditClick");
-                        });
-                    	elem_tools.off("click", ".btn-danger").on("click", ".btn-danger", function() {
-                    		elem.triggerHandler("onDeleteClick");
-                        });
-                    }
-                    // -------------------------------------------------- //
-                    
                     /* filter toogle */
                     elem_tools.off("click", "#" + filter_toggle_id).on("click", "#" + filter_toggle_id, function() {
 
@@ -791,7 +809,7 @@
                 max_str_column_width: 80,
                 // ---------------------------------------------------------------------- //
                 
-                // new - view - delete button ----------------------- //
+                // new - view - edit - delete button ---------------- //
             	// author: toy4codes, date: 2018/03/18 -------------- //
                 editor: false,
                 // -------------------------------------------------- //
@@ -897,19 +915,15 @@
                 // misc
                 debug_mode: "no",
 
-                // new - view - delete button event ----------------- //
+                // new - view - edit - delete button event ---------- //
             	// author: toy4codes, date: 2018/03/18 -------------- //
                 onNewClick: function() {
-                	console.log("new button click");
                 },
                 onViewClick: function() {
-                	console.log("view button click");
                 },
                 onEditClick: function() {
-                	console.log("edit button click");
                 },
                 onDeleteClick: function() {
-                	console.log("delete button click");
                 },
                 // -------------------------------------------------- //
                 

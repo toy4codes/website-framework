@@ -6,11 +6,31 @@
 <struts>
 
 	<package name="userManagement" namespace="/systemManagement/userManagement" extends="json-default">
+		
 		<action name="datagrid" class="userAction" method="datagrid">
 			<result type="json">
 				<param name="root">bootstrapDatagridResponse</param>
 			</result>
 		</action>
+		
+		<action name="load" class="userAction" method="load">
+			<result type="json">
+				<param name="root">user</param>
+			</result>
+		</action>
+		
+		<action name="save" class="userAction" method="save">
+			<result type="redirect">/jsp/systemManagement/userManagement.jsp</result>
+		</action>
+		
+		<action name="update" class="userAction" method="update">
+			<result type="redirect">/jsp/systemManagement/userManagement.jsp</result>
+		</action>
+		
+		<action name="delete" class="userAction" method="delete">
+			<result type="redirect">/jsp/systemManagement/userManagement.jsp</result>
+		</action>
+		
 	</package>
 
 </struts>
