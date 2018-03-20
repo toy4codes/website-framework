@@ -28,11 +28,11 @@
 						<div id="datagrid"></div>
 						
 						<!-- Modal -->
-						<div class="modal fade" id="userModal" tabindex="-1" role="dialog" aria-labelledby="userModalLabel" aria-hidden="true">
+						<div class="modal fade" id="userModal" tabindex="-1" role="dialog">
 						    <div class="modal-dialog">
 						        <div class="modal-content">
 						            <div class="modal-header">
-						                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+						                <button type="button" class="close" data-dismiss="modal">&times;</button>
 						                <h4 class="modal-title" id="userModalLabel"></h4>
 						            </div>
 						            <div class="modal-body">
