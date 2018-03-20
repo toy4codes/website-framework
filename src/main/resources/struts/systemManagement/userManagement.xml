@@ -20,15 +20,15 @@
 		</action>
 		
 		<action name="save" class="userAction" method="save">
-			<result type="redirect">/jsp/systemManagement/userManagement.jsp</result>
+			<result type="dispatcher">/jsp/systemManagement/userManagement.jsp</result>
 		</action>
 		
 		<action name="update" class="userAction" method="update">
-			<result type="redirect">/jsp/systemManagement/userManagement.jsp</result>
+			<result type="dispatcher">/jsp/systemManagement/userManagement.jsp</result>
 		</action>
 		
 		<action name="delete" class="userAction" method="delete">
-			<result type="redirect">/jsp/systemManagement/userManagement.jsp</result>
+			<result type="dispatcher">/jsp/systemManagement/userManagement.jsp</result>
 		</action>
 		
 	</package>

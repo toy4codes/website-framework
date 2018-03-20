@@ -98,35 +98,9 @@
 
                 // apply container style
                 elem.removeClass().addClass(settings.containerClass);
-
-                // new - view - edit - delete button event ---------- //
-            	// author: toy4codes, date: 2018/03/18 -------------- //
-                elem.unbind("onNewClick").bind("onNewClick", settings.onNewClick);
-                elem.unbind("onViewClick").bind("onViewClick", settings.onViewClick);
-                elem.unbind("onEditClick").bind("onEditClick", settings.onEditClick);
-                elem.unbind("onDeleteClick").bind("onDeleteClick", settings.onDeleteClick);
-                // -------------------------------------------------- //
                 
                 // bind events
                 elem.unbind("onCellClick").bind("onCellClick", settings.onCellClick);
-                
-                // new - view - edit - delete button event ---------- //
-            	// author: toy4codes, date: 2018/03/18 -------------- //
-                if(settings.editor == true) {
-                	settings.onRowClick = function(event, data) {
-                		if(data.row_status == "selected") {
-        					$(".btn-view").removeClass("disabled");
-        					$(".btn-edit").removeClass("disabled");
-        					$(".btn-delete").removeClass("disabled");
-        				} else {
-        					$(".btn-view").addClass("disabled");
-        					$(".btn-edit").addClass("disabled");
-        					$(".btn-delete").addClass("disabled");
-        				}
-                	}
-                }
-                // -------------------------------------------------- //
-                
                 elem.unbind("onRowClick").bind("onRowClick", settings.onRowClick);
                 elem.unbind("onDatagridError").bind("onDatagridError", settings.onDatagridError);
                 elem.unbind("onDebug").bind("onDebug", settings.onDebug);
@@ -154,6 +128,62 @@
                     filter_tools_id = create_id(settings.filter_tools_id_prefix, container_id),
                     elem_html = "", tools_html = "";
 
+                // create editor modal structure ------------------------------- //
+                // author: toy4codes, date: 2018/03/20 ------------------------- //
+                if(settings.editor) {
+                	var modal_id_prefix = "modal_",
+                		serverside_entity_name = settings.serverside_entity_name,
+                		modal_id = create_id(modal_id_prefix, container_id),
+                		modal_html = "", modal_form_group_list = "";
+                	
+                	modal_html += '<div class="modal fade" tabindex="-1" role="dialog" id="' + modal_id + '">';
+                	modal_html += '<div class="modal-dialog">';
+                	modal_html += '<div class="modal-content">';
+                	modal_html += '<div class="modal-header">';
+                	modal_html += '<button type="button" class="close" data-dismiss="modal">&times;</button>';
+                	modal_html += '<h4 class="modal-title"></h4>';
+                	modal_html += '</div>'; // modal-header
+                	modal_html += '<div class="modal-body">';
+                	modal_html += '<form class="form-horizontal" method="post">';
+                	
+                	var col_header, col_field;
+                	for(var i in settings.columns) {
+                		col_header = get_column_header(settings.columns[i]);
+                		col_field = get_column_field(settings.columns[i]);
+                		if(col_field == settings.row_primary_key) {
+                			modal_form_group_list += '<div class="form-group" hidden>';
+                		} else {
+                			modal_form_group_list += '<div class="form-group">';
+                		}
+                		modal_form_group_list += '<label for="input' + col_header + '" class="col-sm-2 control-label">' + col_header + '</label>';
+                		modal_form_group_list += '<div class="col-sm-10"><input type="text" class="form-control" id="input' + col_header + '" name="' + serverside_entity_name + '.' + col_field + '"></div>';
+                		modal_form_group_list += '</div>';
+                	}
+                	
+                	// submit, reset button
+                	modal_form_group_list += '<div class="form-group">';
+                	modal_form_group_list += '<div role="toolbar" class="col-sm-offset-2 col-sm-10 btn-toolbar pull-right">';
+                	modal_form_group_list += '<div role="group" class="btn-group pull-right">';
+                	modal_form_group_list += '<button type="button" class="btn btn-success" data-dismiss="modal">Submit</button>';
+                	modal_form_group_list += '</div>'; // submit
+                	modal_form_group_list += '<div role="group" class="btn-group pull-right">';
+                	modal_form_group_list += '<button type="button" class="btn btn-default" data-dismiss="modal">Cancle</button> ';
+                	modal_form_group_list += '</div>'; // reset
+                	modal_form_group_list += '</div>'; // toolbar
+                	modal_form_group_list += '</div>'; // form-group
+                	
+                	modal_html += modal_form_group_list;
+                	
+                	modal_html += '</form>';
+                	modal_html += '</div>'; // modal-body
+                	modal_html += '</div>'; // modal-content
+                	modal_html += '</div>'; // modal-dialog
+                	modal_html += '</div>'; // modal
+                	
+                	elem_html += modal_html;
+                }
+                // ------------------------------------------------------------- //
+                
                 // create basic html structure ---------------------------------
                 elem_html += '<div id="' + tools_id + '" class="' + settings.toolsClass + '"></div>';
 
@@ -186,7 +216,7 @@
                 }
 
                 elem_html += '</div>';
-
+                
                 elem.html(elem_html);
                 $("#" + no_results_id).hide();
 
@@ -199,10 +229,10 @@
                 // new - view - edit - delete button ---------------- //
             	// author: toy4codes, date: 2018/03/18 -------------- //
                 if(settings.editor == true) {
-                	tools_html += '<button type="button" title="New" class="btn btn-new">New</button>' + ' ';
-                    tools_html += '<button type="button" title="View" class="btn btn-view disabled">View</button>' + ' ';
-                    tools_html += '<button type="button" title="Edit" class="btn btn-edit disabled">Edit</button>' + ' ';
-                    tools_html += '<button type="button" title="Delete" class="btn btn-delete disabled">Delete</button>' + ' ';
+                	tools_html += '<button type="button" class="btn btn-success">New</button>' + ' ';
+                    tools_html += '<button type="button" class="btn btn-info">View</button>' + ' ';
+                    tools_html += '<button type="button" class="btn btn-warning">Edit</button>' + ' ';
+                    tools_html += '<button type="button" class="btn btn-danger">Delete</button>' + ' ';
                 }
                 // -------------------------------------------------- //
                 
@@ -329,18 +359,119 @@
                 // new - view - edit - delete button event ---------- //
             	// author: toy4codes, date: 2018/03/18 -------------- //
                 if(settings.editor == true) {
-                	elem_tools.off("click", ".btn-new").on("click", ".btn-new", function() {
-                		elem.triggerHandler("onNewClick");
+                	
+                	// new button
+                	elem_tools.off("click", ".btn-success").on("click", ".btn-success", function() {
+                		$("#" + modal_id + " .modal-title").text("Create " + settings.serverside_entity_name);
+                		$("#" + modal_id + " input").removeAttr("readonly");
+                		$("#" + modal_id + " .btn-toolbar").removeAttr("hidden");
+                		$("#" + modal_id + " input").val("");
+                		$("#" + modal_id).modal("toggle");
+                		// modal submit button
+                		$("#" + modal_id + " .btn-toolbar").off("click", ".btn-success").on("click", ".btn-success", function() {
+                			var col_header, col_field, data = {};
+    						for(var i in settings.columns) {
+    	                		col_header = get_column_header(settings.columns[i]);
+    	                		col_field = get_column_field(settings.columns[i]);
+    	                		data[settings.serverside_entity_name + "." + col_field] = $("#" + modal_id + " #input" + col_header).val();
+    	                	}
+                    		$.ajax({
+        						type: "POST",
+        						url: settings.new_url,
+        						data: data
+        					});
+                    		methods.displayGrid.call(elem, true);
+                		});
                     });
-                	elem_tools.off("click", ".btn-view").on("click", ".btn-view", function() {
-                		elem.triggerHandler("onViewClick");
-                    });
-                	elem_tools.off("click", ".btn-edit").on("click", ".btn-edit", function() {
-                		elem.triggerHandler("onEditClick");
-                    });
-                	elem_tools.off("click", ".btn-delete").on("click", ".btn-delete", function() {
-                		elem.triggerHandler("onDeleteClick");
-                    });
+                	
+                	// view button
+                	elem_tools.off("click", ".btn-info").on("click", ".btn-info", function() {
+                		var selectedIds = methods.selectedRows.call(elem, "get_ids");
+                    	if(selectedIds.length == 1) {
+        					$.ajax({
+        						type: "POST",
+        						url: settings.view_url,
+        						data: {
+        							"user.id": String(selectedIds.shift())
+        						},
+        						dataType : "json",
+        						success: function(data) {
+        							// set user attributes
+        							var col_header, col_field;
+        							for(var i in settings.columns) {
+        		                		col_header = get_column_header(settings.columns[i]);
+        		                		col_field = get_column_field(settings.columns[i]);
+        		                		$("#" + modal_id + " #input" + col_header).val(data[col_field]);
+        		                	}
+        						}
+        					});
+                    		$("#" + modal_id + " .modal-title").text("View " + settings.serverside_entity_name);
+                    		$("#" + modal_id + " input").attr("readonly", "");
+                    		$("#" + modal_id + " .btn-toolbar").attr("hidden", "");
+                    		$("#" + modal_id).modal("toggle");
+                    		methods.displayGrid.call(elem, false);
+                    	}
+                	});
+                	
+                	// edit button
+                	elem_tools.off("click", ".btn-warning").on("click", ".btn-warning", function() {
+                		var selectedIds = methods.selectedRows.call(elem, "get_ids");
+                		if(selectedIds.length == 1) {
+                			$.ajax({
+        						type: "POST",
+        						url: settings.view_url, // load data
+        						data: {
+        							"user.id": String(selectedIds.shift())
+        						},
+        						dataType : "json",
+        						success: function(data) {
+        							// set user attributes
+        							var col_header, col_field;
+        							for(var i in settings.columns) {
+        		                		col_header = get_column_header(settings.columns[i]);
+        		                		col_field = get_column_field(settings.columns[i]);
+        		                		$("#" + modal_id + " #input" + col_header).val(data[col_field]);
+        		                	}
+        						}
+        					});
+                			$("#" + modal_id + " .modal-title").text("Edit " + settings.serverside_entity_name);
+                			$("#" + modal_id + " input").removeAttr("readonly");
+                			$("#" + modal_id + " .btn-toolbar").removeAttr("hidden");
+                			$("#" + modal_id).modal("toggle");
+                			// modal submit button
+                    		$("#" + modal_id + " .btn-toolbar").off("click", ".btn-success").on("click", ".btn-success", function() {
+                    			var col_header, col_field, data = {};
+        						for(var i in settings.columns) {
+        	                		col_header = get_column_header(settings.columns[i]);
+        	                		col_field = get_column_field(settings.columns[i]);
+        	                		data[settings.serverside_entity_name + "." + col_field] = $("#" + modal_id + " #input" + col_header).val();
+        	                	}
+                        		$.ajax({
+            						type: "POST",
+            						url: settings.edit_url,
+            						data: data
+            					});
+                        		methods.displayGrid.call(elem, false);
+                    		});
+                		}
+                	});
+                	
+                	// delete button
+                	elem_tools.off("click", ".btn-danger").on("click", ".btn-danger", function() {
+                		var selectedIds = methods.selectedRows.call(elem, "get_ids");
+                		if(selectedIds.length == 1) {
+                			var data = {};
+                    		data[settings.serverside_entity_name + "." + settings.row_primary_key] = String(selectedIds.shift());
+                			$.ajax({
+        						type: "POST",
+        						url: settings.delete_url,
+        						data: data
+        					});
+                			methods.displayGrid.call(elem, true);
+                    	} else if(selectedIds.length > 1) {
+                    		// multi-delete
+                    	}
+                	});
                 }
                 // -------------------------------------------------- //
 
@@ -915,18 +1046,6 @@
                 // misc
                 debug_mode: "no",
 
-                // new - view - edit - delete button event ---------- //
-            	// author: toy4codes, date: 2018/03/18 -------------- //
-                onNewClick: function() {
-                },
-                onViewClick: function() {
-                },
-                onEditClick: function() {
-                },
-                onDeleteClick: function() {
-                },
-                // -------------------------------------------------- //
-                
                 // events
                 onCellClick: function() {
                 },
@@ -1422,14 +1541,25 @@
         return column.hasOwnProperty("header") ? column["header"] : column["field"];
     };
     
+    // utility function --------------------------------- //
+	// author: toy4codes, date: 2018/03/17 -------------- //
+
+    /**
+     * Get column field (utility function)
+     *
+     * @param {object} column
+     * @returns {string}
+     */
+    var get_column_field = function(column) {
+        return column.hasOwnProperty("field") ? column["field"] : "";
+    };
+    
     /**
      * Get column width (utility function)
      *
      * @param {object} column
      * @returns {string}
      */
-    // utility function --------------------------------- //
-	// author: toy4codes, date: 2018/03/17 -------------- //
     var get_column_width = function(column) {
         return column.hasOwnProperty("width") ? column["width"] : "";
     };
