@@ -14,9 +14,9 @@ flot-chart
 
 bootstrap-datagrid
 
-bootstrap-pagination
+bootstrap-pagination (http://localhost:8080/website-framework/js/bs_pagination/index.html)
 
-jui-filter-rules
+jui-filter-rules (http://localhost:8080/website-framework/js/jui_filter_rules/index.html)
 
 bootstrap-admin
 
@@ -24,9 +24,9 @@ bootstrap
 
 moment
 
-jquery-timepicker
+jquery-timepicker (http://localhost:8080/website-framework/js/jQuery-Timepicker-Addon/index.html)
 
-jquery-ui
+jquery-ui (http://localhost:8080/website-framework/js/jquery-ui/index.html)
 
 jquery
 
