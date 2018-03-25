@@ -11,18 +11,10 @@ public class UserActionTest extends StrutsActionLayerJUnitSuite<UserAction> {
 
 	@Test
 	public void actionMappingTest() {
-		ActionMapping actionMapping = super.getActionMapping("/user/loadAll");
+		ActionMapping actionMapping = super.getActionMapping("/systemManagement/userManagement/load");
 		Assert.assertNotNull(actionMapping);
-		Assert.assertEquals("/user", actionMapping.getNamespace());
-		Assert.assertEquals("loadAll", actionMapping.getName());
-	}
-
-	@Test
-	public void loadAllTest() throws Exception {
-		ActionProxy actionProxy = getActionProxy("/user/loadAll");
-		UserAction userAction = (UserAction) actionProxy.getAction();
-		actionProxy.execute();
-		Assert.assertTrue("action execute success", userAction.getActionErrors().size() == 0);
+		Assert.assertEquals("/systemManagement/userManagement", actionMapping.getNamespace());
+		Assert.assertEquals("load", actionMapping.getName());
 	}
 
 	@Test
@@ -30,7 +22,7 @@ public class UserActionTest extends StrutsActionLayerJUnitSuite<UserAction> {
 		request.setParameter("user.email", "example@email.com");
 		request.setParameter("user.password", "password");
 
-		ActionProxy actionProxy = getActionProxy("/user/save");
+		ActionProxy actionProxy = getActionProxy("/systemManagement/userManagement/save");
 		UserAction userAction = (UserAction) actionProxy.getAction();
 		actionProxy.execute();
 		Assert.assertTrue("action execute success", userAction.getActionErrors().size() == 0);

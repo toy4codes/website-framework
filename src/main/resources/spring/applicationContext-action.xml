@@ -8,4 +8,6 @@
 	<bean id="wiresharkPacketAction" class="com.toy4codes.website.framework.action.WiresharkPacketAction"
 		scope="prototype" />
 
+	<bean id="pm25Action" class="com.toy4codes.website.framework.action.PM25Action" scope="prototype" />
+
 </beans>

@@ -1,6 +1,6 @@
 <jsp:include page="/jsp/common/header.jsp" />
 
-<script src="${pageContext.request.contextPath}/js/modules/pm2.5.js"></script>
+<script src="${pageContext.request.contextPath}/js/modules/pm25.js"></script>
 
 <div id="wrapper">
 
