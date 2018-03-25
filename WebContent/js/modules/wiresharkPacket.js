@@ -24,8 +24,6 @@ $(document).ready(function(){
 			
 			max_str_column_width: 50,
 			
-			editor: true,
-			
 			sorting: [
 				{sortingName: "Code", field: "id", order: "ascending"},
 				{sortingName: "Time", field: "time", order: "ascending"},
