@@ -13,7 +13,7 @@ $(document).ready(function(){
 			rowSelectionMode: "multiple", // "multiple", "single", false
 			
 			columns: [
-				{field: "id", header: "Code", width:"5%", visible: "no"},
+				{field: "id", header: "Code", width:"5%"},
 				{field: "time", header: "Time", width:"10%"},
 				{field: "source", header: "Source", width:"15%"},
 				{field: "destination", header: "Destination", width:"15%"},
@@ -41,7 +41,15 @@ $(document).ready(function(){
 						filterType: "text", 
 						field: "protocol", 
 						filterLabel: "Protocol",
-						excluded_operators: ["in", "not_in", "less", "less_or_equal", "greater", "greater_or_equal"],
+						excluded_operators: ["in", "not_in", 
+						                     "less", "less_or_equal", 
+						                     "greater", "greater_or_equal", 
+						                     "is_null", "is_not_null",
+						                     "is_empty", "is_not_empty",
+						                     "begins_with", "not_begins_with",
+						                     "contains", "not_contains",
+						                     "ends_with", "not_ends_with",
+						                     "not_equal"],
 						filter_interface: [
 							{
 								filter_element: "select"
