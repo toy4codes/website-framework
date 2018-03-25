@@ -23,8 +23,8 @@
 
 	</package>
 
-	<include file="struts/user.xml" />
 	<include file="struts/wiresharkPacket.xml" />
 	<include file="struts/systemManagement/userManagement.xml" />
+	<include file="struts/pm25.xml" />
 
 </struts>

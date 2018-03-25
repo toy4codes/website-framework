@@ -45,14 +45,20 @@
 					<a href="#"><i class="fa fa-sitemap fa-fw"></i> WiresharkPacket<span class="fa arrow"></span></a>
 					<ul class="nav nav-second-level">
 						<li>
-							<a href="${pageContext.request.contextPath}/jsp/wiresharkPacket/tables.jsp">Tables</a>
-						</li>
-						<li>
-							<a href="${pageContext.request.contextPath}/jsp/wiresharkPacket/charts.jsp">Charts</a>
+							<a href="${pageContext.request.contextPath}/jsp/wiresharkPacket/wiresharkPacket.jsp">WiresharkPacket</a>
 						</li>
 					</ul>
 					<!-- /.nav-second-level -->
 				</li>
+				<li>
+					<a href="#"><i class="fa fa-cloud fa-fw"></i> PM2.5<span class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level">
+                    	<li>
+                        	<a href="${pageContext.request.contextPath}/jsp/pm25/pm25.jsp">PM2.5</a>
+                        </li>
+					</ul>
+                    <!-- /.nav-second-level -->
+                </li>
 			</ul>
 		</div>
 		<!-- /.sidebar-collapse -->
