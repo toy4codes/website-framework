@@ -1,0 +1,49 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd//hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+	<class name="com.toy4codes.website.framework.beans.PM25" table="pm25">
+		<id name="id" type="int">
+			<column name="id" />
+			<generator class="native" />
+		</id>
+		<property name="year" type="int">
+			<column name="year" />
+		</property>
+		<property name="month" type="int">
+			<column name="month" />
+		</property>
+		<property name="day" type="int">
+			<column name="day" />
+		</property>
+		<property name="hour" type="int">
+			<column name="hour" />
+		</property>
+		<property name="pm25" type="int">
+			<column name="pm25" />
+		</property>
+		<property name="dewPoint" type="int">
+			<column name="dew_point" />
+		</property>
+		<property name="temperature" type="int">
+			<column name="temperature" />
+		</property>
+		<property name="pressure" type="int">
+			<column name="pressure" />
+		</property>
+		<property name="combinedWindDirection" type="java.lang.String">
+			<column name="combined_wind_direction" />
+		</property>
+		<property name="cumulatedWindSpeed" type="float">
+			<column name="cumulated_wind_speed" />
+		</property>
+		<property name="cumnlatedHoursOfSnow" type="int">
+			<column name="cumnlated_hours_of_snow" />
+		</property>
+		<property name="cumulatedHoursOfRain" type="int">
+			<column name="cumulated_hours_of_rain" />
+		</property>
+	</class>
+
+</hibernate-mapping>

@@ -11,4 +11,6 @@
 	<bean id="wiresharkPacketDao" class="com.toy4codes.website.framework.dao.impl.WiresharkPacketDaoImpl"
 		parent="genericHibernateDao" />
 
+	<bean id="pm25Dao" class="com.toy4codes.website.framework.dao.impl.PM25DaoImpl" parent="genericHibernateDao" />
+
 </beans>

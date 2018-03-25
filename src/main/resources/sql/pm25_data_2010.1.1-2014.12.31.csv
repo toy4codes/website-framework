@@ -1,4 +1,4 @@
-id,year,month,day,hour,pm2.5,dew_point,temperature,pressure,combined_wind_direction,cumulated_wind_speed,cumnlated_hours_of_snow,cumulated_hours_of_rain
+id,year,month,day,hour,pm25,dew_point,temperature,pressure,combined_wind_direction,cumulated_wind_speed,cumnlated_hours_of_snow,cumulated_hours_of_rain
 1,2010,1,1,0,0,-21,-11,1021,NW,1.79,0,0
 2,2010,1,1,1,0,-21,-12,1020,NW,4.92,0,0
 3,2010,1,1,2,0,-21,-11,1019,NW,6.71,0,0

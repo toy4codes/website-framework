@@ -6,17 +6,17 @@
 	
 	<class name="com.toy4codes.website.framework.beans.User" table="users">
 		<id name="id" type="int">
-			<column name="ID" />
+			<column name="id" />
 			<generator class="native" />
 		</id>
 		<property name="username" type="java.lang.String">
-			<column name="USERNAME" />
+			<column name="username" />
 		</property>
 		<property name="email" type="java.lang.String">
-			<column name="EMAIL" />
+			<column name="email" />
 		</property>
 		<property name="password" type="java.lang.String">
-			<column name="PASSWORD" />
+			<column name="password" />
 		</property>
 	</class>
 	

@@ -5,26 +5,26 @@
 
 	<class name="com.toy4codes.website.framework.beans.WiresharkPacket" table="wireshark_packet">
 		<id name="id" type="int">
-			<column name="ID" />
+			<column name="id" />
 			<generator class="native" />
 		</id>
 		<property name="time" type="com.toy4codes.website.framework.hibernate.type.converter.DateTimeStringConverter">
-			<column name="TIME" />
+			<column name="time" />
 		</property>
 		<property name="source" type="java.lang.String">
-			<column name="SOURCE" />
+			<column name="source" />
 		</property>
 		<property name="destination" type="java.lang.String">
-			<column name="DESTINATION" />
+			<column name="destination" />
 		</property>
 		<property name="protocol" type="java.lang.String">
-			<column name="PROTOCOL" />
+			<column name="protocol" />
 		</property>
 		<property name="length" type="int">
-			<column name="LENGTH" />
+			<column name="length" />
 		</property>
 		<property name="info" type="java.lang.String">
-			<column name="INFO" />
+			<column name="info" />
 		</property>
 	</class>
 

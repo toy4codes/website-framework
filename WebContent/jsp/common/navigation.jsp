@@ -53,6 +53,15 @@
 					</ul>
 					<!-- /.nav-second-level -->
 				</li>
+				<li>
+					<a href="#"><i class="fa fa-cloud fa-fw"></i> PM2.5<span class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level">
+                    	<li>
+                        	<a href="${pageContext.request.contextPath}/jsp/pm2.5/pm2.5.jsp">PM2.5</a>
+                        </li>
+					</ul>
+                    <!-- /.nav-second-level -->
+                </li>
 			</ul>
 		</div>
 		<!-- /.sidebar-collapse -->

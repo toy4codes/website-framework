@@ -1,12 +1,12 @@
-DROP TABLE IF EXISTS `pm2.5`;
+DROP TABLE IF EXISTS `pm25`;
 
-CREATE TABLE `pm2.5` (
+CREATE TABLE `pm25` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `year` int(11) DEFAULT NULL,
   `month` int(11) DEFAULT NULL,
   `day` int(11) DEFAULT NULL,
   `hour` int(11) DEFAULT NULL,
-  `pm2.5` int(11) DEFAULT NULL,
+  `pm25` int(11) DEFAULT NULL,
   `dew_point` int(11) DEFAULT NULL,
   `temperature` int(11) DEFAULT NULL,
   `pressure` int(11) DEFAULT NULL,
@@ -17,7 +17,7 @@ CREATE TABLE `pm2.5` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-LOAD DATA INFILE 'pm2.5_data_2010.1.1-2014.12.31.csv' INTO TABLE `pm2.5`
+LOAD DATA INFILE 'pm25_data_2010.1.1-2014.12.31.csv' INTO TABLE `pm25`
   FIELDS TERMINATED BY ',' ENCLOSED BY '"'
   LINES TERMINATED BY '\r\n'
   IGNORE 1 LINES;
