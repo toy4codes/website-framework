@@ -9,5 +9,7 @@
 		scope="prototype" />
 
 	<bean id="pm25Action" class="com.toy4codes.website.framework.action.PM25Action" scope="prototype" />
+	
+	<bean id="bankAction" class="com.toy4codes.website.framework.action.BankAction" scope="prototype" />
 
 </beans>

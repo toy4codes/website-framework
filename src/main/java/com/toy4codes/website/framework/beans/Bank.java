@@ -2,6 +2,8 @@ package com.toy4codes.website.framework.beans;
 
 public class Bank {
 
+	private int id;
+
 	private int age;
 
 	private String job;
@@ -43,6 +45,14 @@ public class Bank {
 	private int numberOfEmployees;
 
 	private String termDeposit;
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
 
 	public int getAge() {
 		return age;

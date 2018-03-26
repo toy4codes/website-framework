@@ -26,5 +26,6 @@
 	<include file="struts/wiresharkPacket.xml" />
 	<include file="struts/systemManagement/userManagement.xml" />
 	<include file="struts/pm25.xml" />
+	<include file="struts/bank.xml" />
 
 </struts>

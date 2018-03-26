@@ -4,9 +4,12 @@
 <hibernate-mapping>
 
 	<class name="com.toy4codes.website.framework.beans.Bank" table="bank">
-		<id name="age" type="int">
-			<column name="age" />
+		<id name="id" type="int">
+			<column name="id" />
 		</id>
+		<property name="age" type="int">
+			<column name="age" />
+		</property>
 		<property name="job" type="java.lang.String">
 			<column name="job" />
 		</property>
