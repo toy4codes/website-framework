@@ -14,7 +14,7 @@ CREATE TABLE `bank` (
   `last_contact_duration` int(11) DEFAULT NULL,
   `campaign` int(11) DEFAULT NULL,
   `pdays` int(11) DEFAULT NULL,
-  `previours` int(11) DEFAULT NULL,
+  `previous` int(11) DEFAULT NULL,
   `poutcome` varchar(45) DEFAULT NULL,
   `employment_variation_rate` float DEFAULT NULL,
   `consumer_price` float DEFAULT NULL,
