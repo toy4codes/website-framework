@@ -1363,7 +1363,7 @@
                         	// author: toy4codes, date: 2018/03/17 -------------- //
                             th_width = get_column_width(s.columns[i]);
                             // -------------------------------------------------- //
-                            tbl_html += '<th class="' + s.commonThClass + '" width="' + th_width + '">' + s.columns[i].header + sortingIndicator + '</th>';
+                            tbl_html += '<th class="' + s.commonThClass + '" width="' + th_width + '" style="white-space: nowrap;">' + s.columns[i].header + sortingIndicator + '</th>';
                         }
                     }
                     tbl_html += '</tr>';
@@ -1386,9 +1386,9 @@
                             	// author: toy4codes, date: 2018/03/17 ---------------------------------- //
                             	if((typeof page_data[row][s.columns[i].field] == "string") 
                             			&&  (page_data[row][s.columns[i].field].length > s.max_str_column_width)) {
-                            		tbl_html += '<td>' + page_data[row][s.columns[i].field].substr(0, s.max_str_column_width) + "..." + '</td>';
+                            		tbl_html += '<td style="white-space: nowrap;">' + page_data[row][s.columns[i].field].substr(0, s.max_str_column_width) + "..." + '</td>';
                             	} else {
-                            		tbl_html += '<td>' + page_data[row][s.columns[i].field] + '</td>';
+                            		tbl_html += '<td style="white-space: nowrap;">' + page_data[row][s.columns[i].field] + '</td>';
                             	}
                                 // tbl_html += '<td>' + page_data[row][s.columns[i].field] + '</td>';
                             	// ---------------------------------------------------------------------- //

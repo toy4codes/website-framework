@@ -1,0 +1,75 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+	<class name="com.toy4codes.website.framework.beans.Bank" table="bank">
+		<id name="id" type="int">
+			<column name="id" />
+		</id>
+		<property name="age" type="int">
+			<column name="age" />
+		</property>
+		<property name="job" type="java.lang.String">
+			<column name="job" />
+		</property>
+		<property name="marital" type="java.lang.String">
+			<column name="marital" />
+		</property>
+		<property name="education" type="java.lang.String">
+			<column name="education" />
+		</property>
+		<property name="hasCredit" type="java.lang.String">
+			<column name="has_credit" />
+		</property>
+		<property name="housingLoan" type="java.lang.String">
+			<column name="housing_loan" />
+		</property>
+		<property name="personalLoan" type="java.lang.String">
+			<column name="personal_loan" />
+		</property>
+		<property name="contact" type="java.lang.String">
+			<column name="contact" />
+		</property>
+		<property name="lastContactMonth" type="java.lang.String">
+			<column name="last_contact_month" />
+		</property>
+		<property name="lastContactDay" type="java.lang.String">
+			<column name="last_contact_day" />
+		</property>
+		<property name="lastContactDuration" type="java.lang.String">
+			<column name="last_contact_duration" />
+		</property>
+		<property name="campaign" type="int">
+			<column name="campaign" />
+		</property>
+		<property name="pdays" type="int">
+			<column name="pdays" />
+		</property>
+		<property name="previous" type="int">
+			<column name="previous" />
+		</property>
+		<property name="poutcome" type="java.lang.String">
+			<column name="poutcome" />
+		</property>
+		<property name="employmentVariationRate" type="float">
+			<column name="employment_variation_rate" />
+		</property>
+		<property name="consumerPrice" type="float">
+			<column name="consumer_price" />
+		</property>
+		<property name="consumerConfidence" type="float">
+			<column name="consumer_confidence" />
+		</property>
+		<property name="euribor3m" type="float">
+			<column name="euribor3m" />
+		</property>
+		<property name="numberOfEmployees" type="int">
+			<column name="number_of_employees" />
+		</property>
+		<property name="termDeposit" type="java.lang.String">
+			<column name="term_deposit" />
+		</property>
+	</class>
+
+</hibernate-mapping>

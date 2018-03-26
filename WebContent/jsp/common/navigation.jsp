@@ -59,6 +59,15 @@
 					</ul>
                     <!-- /.nav-second-level -->
                 </li>
+                <li>
+					<a href="#"><i class="fa fa-bank fa-fw"></i> Bank<span class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level">
+                    	<li>
+                        	<a href="${pageContext.request.contextPath}/jsp/bank/bank.jsp">Bank</a>
+                        </li>
+					</ul>
+                    <!-- /.nav-second-level -->
+                </li>
 			</ul>
 		</div>
 		<!-- /.sidebar-collapse -->
