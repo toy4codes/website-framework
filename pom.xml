@@ -1,4 +1,5 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
@@ -37,6 +38,8 @@
 		<jaxws.version>2.2.11</jaxws.version>
 		<!-- jackson -->
 		<jackson.version>2.8.8.1</jackson.version>
+		<!-- commons net -->
+		<commons.net.version>3.6</commons.net.version>
 		<!-- log framework -->
 		<slf4j.version>1.7.13</slf4j.version>
 		<log4j.version>1.2.17</log4j.version>
@@ -153,7 +156,7 @@
 			<artifactId>cxf-rt-frontend-jaxws</artifactId>
 			<version>${cxf.version}</version>
 		</dependency>
-		
+
 		<!-- Need help to configure webservices by disabling JBossWs (https://developer.jboss.org/thread/273290) -->
 		<!-- jaxws -->
 		<dependency>
@@ -167,6 +170,13 @@
 			<groupId>com.fasterxml.jackson.core</groupId>
 			<artifactId>jackson-databind</artifactId>
 			<version>${jackson.version}</version>
+		</dependency>
+
+		<!-- commons net -->
+		<dependency>
+			<groupId>commons-net</groupId>
+			<artifactId>commons-net</artifactId>
+			<version>${commons.net.version}</version>
 		</dependency>
 
 		<!-- log framework -->
