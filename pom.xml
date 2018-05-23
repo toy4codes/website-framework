@@ -40,6 +40,8 @@
 		<jackson.version>2.8.8.1</jackson.version>
 		<!-- commons net -->
 		<commons.net.version>3.6</commons.net.version>
+		<!-- websocket netty socketio -->
+		<netty.socketio.version>1.7.14</netty.socketio.version>
 		<!-- log framework -->
 		<slf4j.version>1.7.13</slf4j.version>
 		<log4j.version>1.2.17</log4j.version>
@@ -177,6 +179,13 @@
 			<groupId>commons-net</groupId>
 			<artifactId>commons-net</artifactId>
 			<version>${commons.net.version}</version>
+		</dependency>
+
+		<!-- websocket netty socketio -->
+		<dependency>
+			<groupId>com.corundumstudio.socketio</groupId>
+			<artifactId>netty-socketio</artifactId>
+			<version>${netty.socketio.version}</version>
 		</dependency>
 
 		<!-- log framework -->
