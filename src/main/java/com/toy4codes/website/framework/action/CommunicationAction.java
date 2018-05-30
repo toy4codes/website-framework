@@ -31,7 +31,7 @@ public class CommunicationAction extends ActionSupport {
 			pollingDataWrapper = new PollingDataWrapper(Long.parseLong(requestTime), System.currentTimeMillis(),
 					bussinessData);
 		} else {
-			pollingDataWrapper = new PollingDataWrapper();
+			pollingDataWrapper = new PollingDataWrapper(Long.parseLong(requestTime), System.currentTimeMillis());
 		}
 
 		return SUCCESS;

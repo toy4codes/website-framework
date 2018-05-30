@@ -13,6 +13,7 @@
 <script src="${pageContext.request.contextPath}/js/jquery/jquery-1.12.4.min.js"></script>
 
 <script type="text/javascript">
+
 	$(function() {
 		window.setInterval(function(){
 			$.ajax({
@@ -29,6 +30,7 @@
 			});
 		}, 5000);
 	});
+	
 </script>
 
 </head>

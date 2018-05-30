@@ -7,13 +7,20 @@ public class PollingDataWrapper {
 	private long endTime;
 
 	private long timeInterval;
-	
+
 	private String bussinessData;
 
 	public PollingDataWrapper() {
 		super();
 	}
-	
+
+	public PollingDataWrapper(long startTime, long endTime) {
+		super();
+		this.startTime = startTime;
+		this.endTime = endTime;
+		this.timeInterval = endTime - startTime;
+	}
+
 	public PollingDataWrapper(long startTime, long endTime, String bussinessData) {
 		super();
 		this.startTime = startTime;
@@ -53,5 +60,5 @@ public class PollingDataWrapper {
 	public void setBussinessData(String bussinessData) {
 		this.bussinessData = bussinessData;
 	}
-	
+
 }
