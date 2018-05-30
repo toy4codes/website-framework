@@ -18,12 +18,12 @@
 		(function ajaxLongPolling(){
 			$.ajax({
 				url: "${pageContext.request.contextPath}/websocket/communication/ajaxLongPolling",
-	            data: {"timed": new Date().getTime()},
-	            dataType: "text",
+	            data: {"requestTime": new Date().getTime()},
+	            dataType: "json",
 	            success: function(data, textStatus){
-					$("#logs").append("[state: " + textStatus + ", data: { " + data + "} ]<br/>");
+	            	$("#logs").append("[state: " + textStatus + ", data: " + JSON.stringify(data) + " ]<br/>");
                     if (textStatus == "success") {
-                    	ajaxLongPolling();
+						ajaxLongPolling();
                     }
 	            }
 			});

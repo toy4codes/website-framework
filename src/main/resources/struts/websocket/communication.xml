@@ -19,18 +19,6 @@
 			</result>
 		</action>
 
-		<action name="iFramePolling" class="communicationAction" method="iFramePolling">
-			<result type="json">
-				<param name="root">pollingDataWrapper</param>
-			</result>
-		</action>
-
-		<action name="iFrameLongPolling" class="communicationAction" method="iFrameLongPolling">
-			<result type="json">
-				<param name="root">pollingDataWrapper</param>
-			</result>
-		</action>
-
 	</package>
 
 </struts>

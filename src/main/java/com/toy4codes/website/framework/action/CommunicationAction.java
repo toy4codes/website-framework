@@ -17,14 +17,6 @@ public class CommunicationAction extends ActionSupport {
 
 	private PollingDataWrapper pollingDataWrapper;
 
-	public String iFramePolling() {
-		return SUCCESS;
-	}
-
-	public String iFrameLongPolling() {
-		return SUCCESS;
-	}
-
 	public String ajaxPolling() {
 
 		// bussiness dealing ...
@@ -59,8 +51,9 @@ public class CommunicationAction extends ActionSupport {
 
 			if (isDataChange()) {
 				log.info(requestTime + " : bussiness data changed");
-				// long responseTime = System.currentTimeMillis();
-				// pollingDataWrapper = new PollingDataWrapper(Long.parseLong(requestTime), responseTime);
+				String bussinessData = "bussiness data change";
+				long responseTime = System.currentTimeMillis();
+				pollingDataWrapper = new PollingDataWrapper(Long.parseLong(requestTime), responseTime, bussinessData);
 				break;
 			} else {
 				try {
@@ -79,7 +72,7 @@ public class CommunicationAction extends ActionSupport {
 	private boolean isDataChange() {
 		Random rand = new Random();
 		int i = rand.nextInt(10000);
-		if (i <= 5000) {
+		if (i <= 100) {
 			return true;
 		} else {
 			return false;
