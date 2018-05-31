@@ -40,6 +40,8 @@ spring
 
 hibernate
 
+netty-socketio
+
 #### Database
 
 mysql
