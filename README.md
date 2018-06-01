@@ -45,3 +45,7 @@ netty-socketio
 #### Database
 
 mysql
+
+#### Workflow
+
+activiti (https://stackoverflow.com/questions/7279329/bonitasoft-bpm-vs-jbpm-vs-activiti)
