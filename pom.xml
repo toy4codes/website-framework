@@ -1,5 +1,4 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
@@ -42,6 +41,10 @@
 		<commons.net.version>3.6</commons.net.version>
 		<!-- websocket netty socketio -->
 		<netty.socketio.version>1.7.14</netty.socketio.version>
+		<!-- activiti workflow -->
+		<activiti.workflow.version>6.0.0</activiti.workflow.version>
+		<!-- h2 database -->
+		<h2.database.version>1.4.193</h2.database.version>
 		<!-- log framework -->
 		<slf4j.version>1.7.13</slf4j.version>
 		<log4j.version>1.2.17</log4j.version>
@@ -186,6 +189,26 @@
 			<groupId>com.corundumstudio.socketio</groupId>
 			<artifactId>netty-socketio</artifactId>
 			<version>${netty.socketio.version}</version>
+		</dependency>
+
+		<!-- activiti workflow -->
+		<dependency>
+			<groupId>org.activiti</groupId>
+			<artifactId>activiti-engine</artifactId>
+			<version>${activiti.workflow.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.activiti</groupId>
+			<artifactId>activiti-spring</artifactId>
+			<version>${activiti.workflow.version}</version>
+		</dependency>
+
+		<!-- h2 database -->
+		<dependency>
+			<groupId>com.h2database</groupId>
+			<artifactId>h2</artifactId>
+			<version>${h2.database.version}</version>
 		</dependency>
 
 		<!-- log framework -->

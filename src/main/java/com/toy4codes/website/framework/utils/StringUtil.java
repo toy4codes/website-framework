@@ -1,6 +1,8 @@
 package com.toy4codes.website.framework.utils;
 
-public class StringUtils extends org.apache.commons.lang3.StringUtils {
+import org.apache.commons.lang3.StringUtils;
+
+public class StringUtil extends StringUtils {
 
 	public static final String COLON = ":";
 

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+		http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<bean id="h2DataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
+		<!-- JDBC properties -->
+		<property name="driverClass" value="${h2.jdbc.driverClassName}" />
+		<property name="jdbcUrl" value="${h2.jdbc.url}" />
+		<property name="user" value="${h2.jdbc.username}" />
+		<property name="password" value="${h2.jdbc.password}" />
+		<!-- C3P0 properties -->
+		<property name="acquireIncrement" value="${c3p0.acquireIncrement}" />
+		<property name="initialPoolSize" value="${c3p0.initialPoolSize}" />
+		<property name="minPoolSize" value="${c3p0.minPoolSize}" />
+		<property name="maxPoolSize" value="${c3p0.maxPoolSize}" />
+		<property name="maxIdleTime" value="${c3p0.maxIdleTime}" />
+	</bean>
+
+	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="h2DataSource" />
+	</bean>
+
+	<bean id="processEngineConfiguration" class="org.activiti.spring.SpringProcessEngineConfiguration">
+		<property name="dataSource" ref="h2DataSource" />
+		<property name="transactionManager" ref="transactionManager" />
+		<property name="databaseSchemaUpdate" value="true" />
+		<property name="asyncExecutorActivate" value="false" />
+	</bean>
+
+	<bean id="processEngine" class="org.activiti.spring.ProcessEngineFactoryBean">
+		<property name="processEngineConfiguration" ref="processEngineConfiguration" />
+	</bean>
+
+	<bean id="repositoryService" factory-bean="processEngine" factory-method="getRepositoryService" />
+	<bean id="runtimeService" factory-bean="processEngine" factory-method="getRuntimeService" />
+	<bean id="taskService" factory-bean="processEngine" factory-method="getTaskService" />
+	<bean id="historyService" factory-bean="processEngine" factory-method="getHistoryService" />
+	<bean id="managementService" factory-bean="processEngine" factory-method="getManagementService" />
+
+</beans>
+

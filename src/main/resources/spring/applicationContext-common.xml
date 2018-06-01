@@ -10,14 +10,15 @@
 
 	<context:annotation-config />
 
-	<context:property-placeholder location="classpath:jdbc.properties, classpath:socketio-server.properties" />
+	<context:property-placeholder
+		location="classpath:jdbc.properties, classpath:socketio-server.properties" />
 
-	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">
+	<bean id="mysqlDataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">
 		<!-- JDBC properties -->
-		<property name="driverClass" value="${jdbc.driverClassName}" />
-		<property name="jdbcUrl" value="${jdbc.url}" />
-		<property name="user" value="${jdbc.username}" />
-		<property name="password" value="${jdbc.password}" />
+		<property name="driverClass" value="${mysql.jdbc.driverClassName}" />
+		<property name="jdbcUrl" value="${mysql.jdbc.url}" />
+		<property name="user" value="${mysql.jdbc.username}" />
+		<property name="password" value="${mysql.jdbc.password}" />
 		<!-- C3P0 properties -->
 		<property name="acquireIncrement" value="${c3p0.acquireIncrement}" />
 		<property name="initialPoolSize" value="${c3p0.initialPoolSize}" />
@@ -27,7 +28,7 @@
 	</bean>
 
 	<bean id="sessionFactory" class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
-		<property name="dataSource" ref="dataSource" />
+		<property name="dataSource" ref="mysqlDataSource" />
 		<property name="mappingLocations">
 			<list>
 				<value>classpath:hibernate/*.hbm.xml</value>
@@ -63,7 +64,8 @@
 	</tx:advice>
 
 	<aop:config>
-		<aop:pointcut id="businessService" expression="execution(* com.toy4codes.website.framework..*Service.*(..))" />
+		<aop:pointcut id="businessService"
+			expression="execution(* com.toy4codes.website.framework..*Service.*(..))" />
 		<aop:advisor advice-ref="txAdvice" pointcut-ref="businessService" />
 	</aop:config>
 

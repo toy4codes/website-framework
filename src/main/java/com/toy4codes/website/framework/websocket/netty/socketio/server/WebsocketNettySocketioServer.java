@@ -10,7 +10,7 @@ import com.corundumstudio.socketio.SocketIOServer;
 import com.corundumstudio.socketio.listener.ConnectListener;
 import com.corundumstudio.socketio.listener.DataListener;
 import com.corundumstudio.socketio.listener.DisconnectListener;
-import com.toy4codes.website.framework.utils.StringUtils;
+import com.toy4codes.website.framework.utils.StringUtil;
 
 public class WebsocketNettySocketioServer extends SocketIOServer {
 
@@ -31,7 +31,7 @@ public class WebsocketNettySocketioServer extends SocketIOServer {
 		super.addConnectListener(new ConnectListener() {
 			@Override
 			public void onConnect(SocketIOClient client) {
-				log.info(client.getRemoteAddress() + StringUtils.COLON + client.getSessionId().toString()
+				log.info(client.getRemoteAddress() + StringUtil.COLON + client.getSessionId().toString()
 						+ " websocket client connected.");
 			}
 		});
@@ -39,7 +39,7 @@ public class WebsocketNettySocketioServer extends SocketIOServer {
 		super.addDisconnectListener(new DisconnectListener() {
 			@Override
 			public void onDisconnect(SocketIOClient client) {
-				log.info(client.getRemoteAddress() + StringUtils.COLON + client.getSessionId().toString()
+				log.info(client.getRemoteAddress() + StringUtil.COLON + client.getSessionId().toString()
 						+ " websocket client disconnected.");
 				client.disconnect();
 			}
