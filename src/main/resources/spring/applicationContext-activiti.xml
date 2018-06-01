@@ -17,13 +17,13 @@
 		<property name="maxIdleTime" value="${c3p0.maxIdleTime}" />
 	</bean>
 
-	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+	<bean id="h2TransactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
 		<property name="dataSource" ref="h2DataSource" />
 	</bean>
 
 	<bean id="processEngineConfiguration" class="org.activiti.spring.SpringProcessEngineConfiguration">
 		<property name="dataSource" ref="h2DataSource" />
-		<property name="transactionManager" ref="transactionManager" />
+		<property name="transactionManager" ref="h2TransactionManager" />
 		<property name="databaseSchemaUpdate" value="true" />
 		<property name="asyncExecutorActivate" value="false" />
 	</bean>
